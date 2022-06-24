@@ -9,6 +9,9 @@ export const lightTheme = createTheme({
     secondary: {
       main: '#3A64D8',
     },
+    background: {
+      default: '#FFF9E9',
+    },
   },
   components: {
     MuiLink: {
@@ -23,7 +26,7 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: 'white',
+          backgroundColor: '#FFF9E9',
           height: 60,
         },
       },
@@ -54,11 +57,13 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
+          backgroundColor: '#FFF9E9',
+          color: '#171717',
           textTransform: 'none',
           boxShadow: 'none',
           borderRadius: 10,
           ':hover': {
-            backgroundColor: 'rgba(0,0,0,0.05)',
+            backgroundColor: 'rgba(23,23,23,0.09)',
             transition: 'all 0.3s ease-in-out',
           },
         },
