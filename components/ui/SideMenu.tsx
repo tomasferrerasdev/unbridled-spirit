@@ -29,7 +29,7 @@ export const SideMenu = () => {
     <Drawer
       open={true}
       anchor="right"
-      sx={{ backdropFilter: 'blur(4px)', transition: 'all 0.5s ease-out' }}
+      sx={{ backdropFilter: 'blur(2px)', transition: 'all 0.5s ease-out' }}
     >
       <Box sx={{ width: 250, paddingTop: 5 }}>
         <List>
@@ -62,7 +62,11 @@ export const SideMenu = () => {
           </ListItem>
 
           {ValidTypes.map((categoryName) => (
-            <ListItem button sx={{ display: { xs: '', md: 'none' } }}>
+            <ListItem
+              button
+              sx={{ display: { xs: '', md: 'none' } }}
+              key={categoryName}
+            >
               <ListItemIcon>
                 <ArrowForwardOutlined />
               </ListItemIcon>
