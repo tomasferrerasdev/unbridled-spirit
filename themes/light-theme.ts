@@ -63,7 +63,7 @@ export const lightTheme = createTheme({
           boxShadow: 'none',
           borderRadius: 10,
           ':hover': {
-            backgroundColor: 'rgba(23,23,23,0.09)',
+            backgroundColor: 'rgba(0,0,0,0.05)',
             transition: 'all 0.3s ease-in-out',
           },
         },

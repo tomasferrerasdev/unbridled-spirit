@@ -12,12 +12,13 @@ const Custom404Page = () => {
         justifyContent="center"
         alignItems="center"
         height="calc(100vh - 200px)"
+        sx={{ flexDirection: { xs: 'column', md: 'row' } }}
       >
         <Typography variant="h1" component="h1" fontSize={80} fontWeight={150}>
           404 |{' '}
         </Typography>
-        <Typography marginLeft={2} fontSize={40}>
-          there’s no whiskey in the jar 🦃🧪
+        <Typography marginLeft={2} fontSize={30}>
+          No whiskey in the jar
         </Typography>
       </Box>
     </ShopLayout>
