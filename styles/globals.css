@@ -31,7 +31,8 @@
 }
 
 .circular-btn:hover {
-  background-color: #274494;
+  background-color: #171717;
+  color: #fff9e9;
 }
 
 .summary-card {

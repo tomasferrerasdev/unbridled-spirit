@@ -21,19 +21,6 @@ interface SeedData {
 export const initialData: SeedData = {
   products: [
     {
-      title: 'Jim Beam white-label',
-      description:
-        '220 years of experience goes into every bottle. Along with corn, rye, malted barley, water, time, pride, and of course, true passion. Isn’t it good to know some things never go out of style? Take a sip and you’ll know what we mean.',
-      image: 'jim-beam-white.webp',
-      inStock: 24,
-      price: 32,
-      sizes: ['200ml', '375ml', '750ml', '1L'],
-      type: 'Kentucky',
-      ABV: '50.5%',
-      slug: 'jim-beam-white-label',
-      tags: ['kentucky', 'bourbon', 'jim', 'beam'],
-    },
-    {
       title: 'Bourbon Cream',
       description:
         'Bourbon Cream is handcrafted using Buffalo Trace Kentucky Straight Bourbon, making it a perfect marriage of rich delicious cream and smooth Kentucky bourbon.',
@@ -71,6 +58,19 @@ export const initialData: SeedData = {
       ABV: '45%',
       slug: 'Jack-Daniels-single-barrel',
       tags: ['daniels', 'jack', 'single'],
+    },
+    {
+      title: 'Jim Beam white-label',
+      description:
+        '220 years of experience goes into every bottle. Along with corn, rye, malted barley, water, time, pride, and of course, true passion. Isn’t it good to know some things never go out of style? Take a sip and you’ll know what we mean.',
+      image: 'jim-beam-white.webp',
+      inStock: 24,
+      price: 32,
+      sizes: ['200ml', '375ml', '750ml', '1L'],
+      type: 'Kentucky',
+      ABV: '50.5%',
+      slug: 'jim-beam-white-label',
+      tags: ['kentucky', 'bourbon', 'jim', 'beam'],
     },
   ],
 };

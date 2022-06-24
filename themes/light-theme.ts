@@ -4,13 +4,16 @@ export const lightTheme = createTheme({
   palette: {
     mode: 'light',
     primary: {
-      main: '#1E1E1E',
+      main: '#171717',
     },
     secondary: {
-      main: '#3A64D8',
+      main: '#171717',
     },
     background: {
       default: '#FFF9E9',
+    },
+    info: {
+      main: '#FFF9E9',
     },
   },
   components: {
@@ -54,11 +57,10 @@ export const lightTheme = createTheme({
         variant: 'contained',
         size: 'small',
         disableElevation: true,
+        color: 'info',
       },
       styleOverrides: {
         root: {
-          backgroundColor: '#FFF9E9',
-          color: '#171717',
           textTransform: 'none',
           boxShadow: 'none',
           borderRadius: 10,
