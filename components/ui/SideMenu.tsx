@@ -27,7 +27,7 @@ const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 export const SideMenu = () => {
   return (
     <Drawer
-      open={true}
+      open={false}
       anchor="right"
       sx={{ backdropFilter: 'blur(2px)', transition: 'all 0.5s ease-out' }}
     >
