@@ -14,7 +14,7 @@ import { FC } from 'react';
 
 export const Navbar: FC = () => {
   return (
-    <AppBar>
+    <AppBar position="fixed">
       <Toolbar>
         <NextLink href="/" passHref>
           <Link display="flex" alignItems="center">

@@ -1,6 +1,6 @@
 interface SeedProduct {
   description: string;
-  images: string;
+  image: string;
   inStock: number;
   price: number;
   sizes: ValidSizes[];
@@ -24,7 +24,7 @@ export const initialData: SeedData = {
       title: 'Jim Beam white-label',
       description:
         '220 years of experience goes into every bottle. Along with corn, rye, malted barley, water, time, pride, and of course, true passion. Isn’t it good to know some things never go out of style? Take a sip and you’ll know what we mean.',
-      images: 'jim-beam-white.webp',
+      image: 'jim-beam-white.webp',
       inStock: 24,
       price: 32,
       sizes: ['200ml', '375ml', '750ml', '1L'],
@@ -37,7 +37,7 @@ export const initialData: SeedData = {
       title: 'Bourbon Cream',
       description:
         'Bourbon Cream is handcrafted using Buffalo Trace Kentucky Straight Bourbon, making it a perfect marriage of rich delicious cream and smooth Kentucky bourbon.',
-      images: 'bourbon-cream.webp',
+      image: 'bourbon-cream.webp',
       inStock: 12,
       price: 56,
       sizes: ['200ml', '375ml', '750ml', '1L'],
@@ -50,7 +50,7 @@ export const initialData: SeedData = {
       title: 'Knob Creek 12 Year',
       description:
         'Knob Creek Small Batch Bourbon is one of four bourbons that comprise Jim Beam’s Small Batch Bourbon Collection. The others are Basil Hayden’s, Baker’s Bourbon, and Booker’s Bourbon. Knob Creek 12 Year was originally positioned as a limited edition bourbon when it was released in late 2019.',
-      images: 'knob-creek.webp',
+      image: 'knob-creek.webp',
       inStock: 2,
       price: 150,
       sizes: ['200ml', '375ml', '750ml', '1L'],
@@ -63,7 +63,7 @@ export const initialData: SeedData = {
       title: 'Jack Daniel’s single barrel',
       description:
         'Bottled at 94-proof, Single Barrel Select layers subtle notes of caramel and spice with bright fruit notes and sweet aromatics for a Tennessee Whiskey with one-of-a-kind flavor.',
-      images: 'jackdaniels-single-barrel.webp',
+      image: 'jackdaniels-single-barrel.webp',
       inStock: 2,
       price: 50,
       sizes: ['200ml', '375ml', '750ml', '1L'],

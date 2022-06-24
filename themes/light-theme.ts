@@ -81,5 +81,19 @@ export const lightTheme = createTheme({
         },
       },
     },
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#FFF9E9',
+        },
+      },
+    },
+    MuiListSubheader: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#FFF9E9',
+        },
+      },
+    },
   },
 });
