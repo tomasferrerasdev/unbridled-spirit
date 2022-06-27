@@ -73,6 +73,14 @@ export const lightTheme = createTheme({
       },
     },
 
+    MuiContainer: {
+      styleOverrides: {
+        root: {
+          maxWidth: '1440px',
+        },
+      },
+    },
+
     MuiCard: {
       defaultProps: {
         elevation: 0,
