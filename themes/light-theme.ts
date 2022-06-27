@@ -76,7 +76,7 @@ export const lightTheme = createTheme({
     MuiContainer: {
       styleOverrides: {
         root: {
-          maxWidth: '1440px',
+          maxWidth: '1600px',
         },
       },
     },
