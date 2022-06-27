@@ -1,16 +1,16 @@
 export interface Iproduct {
   _id: String;
   description: string;
-  image: string;
+  images: string[];
   inStock: number;
   price: number;
-  sizes: ISizes[];
+  sizes: ISize[];
   slug: string;
   tags: string[];
   title: string;
-  type: ITypes;
+  type: IType;
   ABV: string;
 }
 
-export type ISizes = '1L' | '750ml' | '375ml' | '200ml';
-export type ITypes = 'Kentucky' | 'Tennessee' | 'Straight' | 'Single-Barrel';
+export type ISize = '1L' | '750ml' | '375ml' | '200ml';
+export type IType = 'Kentucky' | 'Tennessee' | 'Straight' | 'Single-Barrel';

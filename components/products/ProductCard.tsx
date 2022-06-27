@@ -19,12 +19,12 @@ export const ProductCard: FC<Props> = ({ product }) => {
   return (
     <Grid item xs={6} sm={4}>
       <Card>
-        <NextLink href="products/slug" passHref prefetch={false}>
+        <NextLink href="/products/slug" passHref prefetch={false}>
           <Link>
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={`products/${product.image}`}
+                image={`products/${product.images[0]}`}
                 alt={`${product.title} image`}
                 sx={{ maxHeight: '450px', maxWidth: '500px' }}
               />
