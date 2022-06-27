@@ -12,12 +12,12 @@ const product = initialData.products[0];
 const ProductPage = () => {
   return (
     <ShopLayout title={product.title} pageDescription={product.description}>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={7}>
+      <Grid container spacing={4}>
+        <Grid item xs={12} sm={6}>
           <ProductSlideShow images={product.images} />
         </Grid>
 
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} sm={6}>
           <Box display="flex" flexDirection="column">
             <Typography variant="h1" component="h1">
               {product.title}
@@ -30,7 +30,7 @@ const ProductPage = () => {
               <Typography variant="subtitle2">Quantity</Typography>
               <ItemCounter />
               <ProductSizeSelector
-                selectedSize={product.sizes[0]}
+                selectedSize={product.sizes[1]}
                 sizes={product.sizes}
               />
             </Box>
