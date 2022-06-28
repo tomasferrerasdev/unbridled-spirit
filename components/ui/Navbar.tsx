@@ -13,6 +13,14 @@ import { Container } from '@mui/system';
 import NextLink from 'next/link';
 import { FC } from 'react';
 
+const items = [
+  'kentucky',
+  'tennessee',
+  'straight',
+  'single-barrel',
+  'accessories',
+];
+
 export const Navbar: FC = () => {
   return (
     <AppBar position="fixed">
@@ -27,41 +35,19 @@ export const Navbar: FC = () => {
           <Box flex={1} />
 
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
-            <NextLink href="/category/kentucky" passHref>
-              <Link>
-                <Button variant="text" color="secondary">
-                  Kentucky
-                </Button>
-              </Link>
-            </NextLink>
-            <NextLink href="/category/tennessee" passHref>
-              <Link>
-                <Button variant="text" color="secondary">
-                  Tennessee
-                </Button>
-              </Link>
-            </NextLink>
-            <NextLink href="/category/straight" passHref>
-              <Link>
-                <Button variant="text" color="secondary">
-                  Straight
-                </Button>
-              </Link>
-            </NextLink>
-            <NextLink href="/category/single-barrel" passHref>
-              <Link>
-                <Button variant="text" color="secondary">
-                  Single-Barrel
-                </Button>
-              </Link>
-            </NextLink>
-            <NextLink href="/category/accessories" passHref>
-              <Link>
-                <Button variant="text" color="secondary">
-                  Accessories
-                </Button>
-              </Link>
-            </NextLink>
+            {items.map((item) => (
+              <NextLink href={`/category/${item}`} passHref key={item}>
+                <Link>
+                  <Button
+                    variant="text"
+                    color="secondary"
+                    sx={{ textTransform: 'capitalize' }}
+                  >
+                    {item}
+                  </Button>
+                </Link>
+              </NextLink>
+            ))}
           </Box>
 
           <Box flex={1} />

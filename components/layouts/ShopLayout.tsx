@@ -35,7 +35,9 @@ export const ShopLayout: FC<Props> = ({
           margin: '0px auto',
         }}
       >
-        <Container sx={{ marginTop: { sm: '100px' } }}>{children}</Container>
+        <Container sx={{ marginTop: { xs: ' 60px', sm: '100px' } }}>
+          {children}
+        </Container>
       </main>
       <footer>{/* TODO: custon footer*/}</footer>
     </>

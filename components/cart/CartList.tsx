@@ -30,7 +30,10 @@ export const CartList: FC<Props> = ({ editable = false }) => {
           justifyContent={{ xs: 'space-between', sm: 'flex-start' }}
           container
           spacing={2}
-          sx={{ mb: 1 }}
+          sx={{
+            mb: 1,
+            justifyContent: { sm: 'space-between' },
+          }}
         >
           <Grid item xs={2}>
             <NextLink href="/products/slug" passHref>

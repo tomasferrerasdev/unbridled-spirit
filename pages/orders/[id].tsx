@@ -50,10 +50,10 @@ const OrderPage = () => {
         Your order
       </Typography>
       <Grid container spacing={3}>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} md={7}>
           <CartList />
         </Grid>
-        <Grid item xs={12} sm={5}>
+        <Grid item xs={12} md={5}>
           <Card className="summary-card">
             <CardContent>
               <Typography variant="h2" component="h2">
@@ -83,7 +83,13 @@ const OrderPage = () => {
 
               <OrderSummary />
 
-              <Box sx={{ mt: 3 }}>
+              <Box
+                sx={{ mt: 3 }}
+                display="flex"
+                flexDirection="row"
+                justifyContent="space-between"
+                alignItems="center"
+              >
                 <h1>Paid</h1>
                 <Chip
                   sx={{ my: 2 }}
