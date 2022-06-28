@@ -19,6 +19,9 @@ const CartPage = () => {
       <Typography variant="h1" component="h1">
         Cart
       </Typography>
+      <Typography variant="h2" sx={{ mb: 2 }}>
+        All products
+      </Typography>
       <Grid container>
         <Grid item xs={12} sm={7}>
           <CartList />

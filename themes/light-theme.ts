@@ -87,6 +87,7 @@ export const lightTheme = createTheme({
         },
       },
     },
+
     MuiPaper: {
       styleOverrides: {
         root: {
