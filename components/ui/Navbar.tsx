@@ -29,27 +29,37 @@ export const Navbar: FC = () => {
           <Box sx={{ display: { xs: 'none', sm: 'none', md: 'block' } }}>
             <NextLink href="/category/kentucky" passHref>
               <Link>
-                <Button>Kentucky</Button>
+                <Button variant="text" color="secondary">
+                  Kentucky
+                </Button>
               </Link>
             </NextLink>
             <NextLink href="/category/tennessee" passHref>
               <Link>
-                <Button>Tennessee</Button>
+                <Button variant="text" color="secondary">
+                  Tennessee
+                </Button>
               </Link>
             </NextLink>
             <NextLink href="/category/straight" passHref>
               <Link>
-                <Button>Straight</Button>
+                <Button variant="text" color="secondary">
+                  Straight
+                </Button>
               </Link>
             </NextLink>
             <NextLink href="/category/single-barrel" passHref>
               <Link>
-                <Button>Single-Barrel</Button>
+                <Button variant="text" color="secondary">
+                  Single-Barrel
+                </Button>
               </Link>
             </NextLink>
             <NextLink href="/category/accessories" passHref>
               <Link>
-                <Button>Accessories</Button>
+                <Button variant="text" color="secondary">
+                  Accessories
+                </Button>
               </Link>
             </NextLink>
           </Box>

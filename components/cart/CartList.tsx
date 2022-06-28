@@ -12,18 +12,26 @@ import { FC } from 'react';
 import { initialData } from '../../database/products';
 import { ItemCounter } from '../ui';
 
-interface Props {}
+interface Props {
+  editable?: boolean;
+}
 
 const productsInCart = [
   initialData.products[0],
   initialData.products[1],
   initialData.products[2],
 ];
-export const CartList: FC<Props> = () => {
+export const CartList: FC<Props> = ({ editable = false }) => {
   return (
     <>
       {productsInCart.map((product) => (
-        <Grid key={product.slug} container spacing={2} sx={{ mb: 1 }}>
+        <Grid
+          key={product.slug}
+          justifyContent={{ xs: 'space-between', sm: 'flex-start' }}
+          container
+          spacing={2}
+          sx={{ mb: 1 }}
+        >
           <Grid item xs={2}>
             <NextLink href="/products/slug" passHref>
               <Link>
@@ -45,8 +53,8 @@ export const CartList: FC<Props> = () => {
               <Typography variant="body1">{product.title}</Typography>
               <Typography variant="body1">
                 Size: <strong>750ml</strong>
+                {editable && <ItemCounter />}
               </Typography>
-              <ItemCounter />
             </Box>
           </Grid>
           <Grid
@@ -57,9 +65,11 @@ export const CartList: FC<Props> = () => {
             flexDirection="column"
           >
             <Typography variant="subtitle1">{`$${product.price}`}</Typography>
-            <Button variant="text" color="secondary">
-              Remove
-            </Button>
+            {editable && (
+              <Button variant="text" color="secondary">
+                Remove
+              </Button>
+            )}
           </Grid>
         </Grid>
       ))}
