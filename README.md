@@ -2,7 +2,6 @@
 This Guide / Doc is still in progress keep coming to check updates ✅✅✅
 
 ![home](https://user-images.githubusercontent.com/107090584/176201090-0132d9bf-c1f1-48ee-896b-970b7e3c5717.png)
-![Screenshot 2022-06-28 111403](https://user-images.githubusercontent.com/107090584/176201087-647fcbb1-3c98-497f-bcbe-de32456c5fd3.png)
 
 # Initial project config 
 - Engine Locking  
