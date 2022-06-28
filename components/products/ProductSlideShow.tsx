@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import { FC } from 'react';
 import { Slide } from 'react-slideshow-image';
 import 'react-slideshow-image/dist/styles.css';
@@ -12,14 +13,16 @@ export const ProductSlideShow: FC<Props> = ({ images }) => {
     <Slide easing="ease" duration={9000} indicators>
       {images.map((image) => {
         return (
-          <div className={styles['each-slide']} key={image}>
-            <div
-              style={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: 'cover',
-              }}
-            ></div>
-          </div>
+          <Box sx={{ height: { xs: '400px', sm: '500px', md: '600px' } }}>
+            <div className={styles['each-slide']} key={image}>
+              <div
+                style={{
+                  backgroundImage: `url(${image})`,
+                  backgroundSize: 'cover',
+                }}
+              ></div>
+            </div>
+          </Box>
         );
       })}
     </Slide>

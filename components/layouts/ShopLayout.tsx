@@ -23,7 +23,6 @@ export const ShopLayout: FC<Props> = ({
         <meta name="description" content={pageDescription} />
         <meta name="og:title" content={title} />
         <meta name="og:description" content={pageDescription} />
-        <html lang="en" />
         {imageFullUrl && <meta name="og:image" content={imageFullUrl} />}
       </Head>
 
@@ -33,10 +32,10 @@ export const ShopLayout: FC<Props> = ({
       <SideMenu />
       <main
         style={{
-          margin: '80px auto',
+          margin: '0px auto',
         }}
       >
-        <Container>{children}</Container>
+        <Container sx={{ marginTop: { sm: '90px' } }}>{children}</Container>
       </main>
       <footer>{/* TODO: custon footer*/}</footer>
     </>
