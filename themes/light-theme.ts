@@ -10,10 +10,10 @@ export const lightTheme = createTheme({
       main: '#171717',
     },
     background: {
-      default: '#FFF9E9',
+      default: '#FFFBEF',
     },
     info: {
-      main: '#FFF9E9',
+      main: '#FFFBEF',
     },
   },
   components: {
@@ -29,7 +29,7 @@ export const lightTheme = createTheme({
       },
       styleOverrides: {
         root: {
-          backgroundColor: '#FFF9E9',
+          backgroundColor: '#FFFBEF',
           height: 60,
         },
       },
@@ -83,14 +83,14 @@ export const lightTheme = createTheme({
     MuiPaper: {
       styleOverrides: {
         root: {
-          backgroundColor: '#FFF9E9',
+          backgroundColor: '#FFFBEF',
         },
       },
     },
     MuiListSubheader: {
       styleOverrides: {
         root: {
-          backgroundColor: '#FFF9E9',
+          backgroundColor: '#FFFBEF',
         },
       },
     },
