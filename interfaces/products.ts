@@ -10,6 +10,8 @@ export interface Iproduct {
   title: string;
   type: IType;
   ABV: string;
+  createdAt: String;
+  updatedAt: String;
 }
 
 export type ISize = '1L' | '750ml' | '375ml' | '200ml';
