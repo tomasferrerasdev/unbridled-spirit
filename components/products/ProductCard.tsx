@@ -26,7 +26,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
             <CardActionArea>
               <CardMedia
                 component="img"
-                image={`product/${product.images[0]}`}
+                image={`/product/${product.images[0]}`}
                 alt={`${product.title} image`}
                 sx={{
                   height: { xs: '200px', sm: '350px' },
