@@ -22,7 +22,7 @@ const productSchema = new Schema(
     type: {
       type: String,
       enum: {
-        values: ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'],
+        values: ['kentucky', 'tennessee', 'straight', 'single-barrel'],
         message: '${VALUE} is not an allowed type',
       },
     },
@@ -33,7 +33,7 @@ const productSchema = new Schema(
   }
 );
 
-// TODO MongoDB index
+productSchema.index({ title: 'text', tags: 'text' });
 
 const Product: Model<Iproduct> =
   mongoose.models.Product || model('Product', productSchema);

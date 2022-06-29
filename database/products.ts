@@ -12,7 +12,7 @@ interface SeedProduct {
 }
 
 type ValidSizes = '1L' | '750ml' | '375ml' | '200ml';
-type ValidTypes = 'Kentucky' | 'Tennessee' | 'Straight' | 'Single-Barrel';
+type ValidTypes = 'kentucky' | 'tennessee' | 'straight' | 'single-barrel';
 
 interface SeedData {
   products: SeedProduct[];
@@ -28,7 +28,7 @@ export const initialData: SeedData = {
       inStock: 12,
       price: 56,
       sizes: ['375ml', '750ml', '1L'],
-      type: 'Kentucky',
+      type: 'kentucky',
       ABV: '15%',
       slug: 'bourbon-cream',
       tags: ['bourbon', 'cream', 'buffalo'],
@@ -41,7 +41,7 @@ export const initialData: SeedData = {
       inStock: 2,
       price: 150,
       sizes: ['200ml', '375ml', '750ml'],
-      type: 'Straight',
+      type: 'straight',
       ABV: '50%',
       slug: 'Knob-Creek-12-Year',
       tags: ['knob', '12', 'creek'],
@@ -54,7 +54,7 @@ export const initialData: SeedData = {
       inStock: 2,
       price: 50,
       sizes: ['200ml', '750ml', '1L'],
-      type: 'Single-Barrel',
+      type: 'single-barrel',
       ABV: '45%',
       slug: 'Jack-Daniels-single-barrel',
       tags: ['daniels', 'jack', 'single'],
@@ -67,7 +67,7 @@ export const initialData: SeedData = {
       inStock: 24,
       price: 32,
       sizes: ['200ml', '375ml', '750ml', '1L'],
-      type: 'Kentucky',
+      type: 'kentucky',
       ABV: '50.5%',
       slug: 'jim-beam-white-label',
       tags: ['kentucky', 'bourbon', 'jim', 'beam'],

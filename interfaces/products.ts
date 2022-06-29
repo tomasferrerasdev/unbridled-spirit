@@ -15,4 +15,4 @@ export interface Iproduct {
 }
 
 export type ISize = '1L' | '750ml' | '375ml' | '200ml';
-export type IType = 'Kentucky' | 'Tennessee' | 'Straight' | 'Single-Barrel';
+export type IType = 'kentucky' | 'tennessee' | 'straight' | 'single-barrel';
