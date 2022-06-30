@@ -29,7 +29,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 image={`/product/${product.images[0]}`}
                 alt={`${product.title} image`}
                 sx={{
-                  height: { xs: '200px', sm: '350px' },
+                  height: { xs: '200px', md: '400px' },
                 }}
                 className="fadeIn"
                 onLoad={() => setIsImageLoader(true)}
