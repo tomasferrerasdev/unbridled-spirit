@@ -1,5 +1,5 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
-import { GetServerSideProps, NextPage } from 'next';
+import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { ShopLayout } from '../../components/layouts';
 import { ProductSizeSelector } from '../../components/products';
 import { ProductSlideShow } from '../../components/products/ProductSlideShow';
@@ -51,7 +51,20 @@ const ProductPage: NextPage<Props> = ({ product }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+export const getStaticPaths: GetStaticPaths = async (ctx) => {
+  const productSlugs = await productsDB.getAllProductSlugs();
+
+  return {
+    paths: productSlugs.map(({ slug }) => ({
+      params: {
+        slug: slug,
+      },
+    })),
+    fallback: 'blocking',
+  };
+};
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug = '' } = params as { slug: string };
   const product = await productsDB.getProductBySlug(slug);
 
@@ -68,6 +81,7 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     props: {
       product,
     },
+    revalidate: 86400,
   };
 };
 
