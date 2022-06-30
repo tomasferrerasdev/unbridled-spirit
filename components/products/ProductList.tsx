@@ -8,7 +8,6 @@ interface Props {
 }
 
 export const ProductList: FC<Props> = ({ products }) => {
-  console.log(products);
   return (
     <Grid container spacing={2}>
       {products.map((product) => (
