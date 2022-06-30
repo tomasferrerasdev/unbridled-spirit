@@ -21,7 +21,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card>
-        <NextLink href="/product/slug" passHref prefetch={false}>
+        <NextLink href={`/product/${product.slug}`} passHref prefetch={false}>
           <Link>
             <CardActionArea>
               <CardMedia

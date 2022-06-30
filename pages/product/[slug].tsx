@@ -1,13 +1,17 @@
 import { Box, Button, Grid, Typography } from '@mui/material';
+import { GetServerSideProps, NextPage } from 'next';
 import { ShopLayout } from '../../components/layouts';
 import { ProductSizeSelector } from '../../components/products';
 import { ProductSlideShow } from '../../components/products/ProductSlideShow';
 import { ItemCounter } from '../../components/ui';
-import { initialData } from '../../database/products';
+import { productsDB } from '../../database';
+import { Iproduct } from '../../interfaces';
 
-const product = initialData.products[0];
+interface Props {
+  product: Iproduct;
+}
 
-const ProductPage = () => {
+const ProductPage: NextPage<Props> = ({ product }) => {
   return (
     <ShopLayout title={product.title} pageDescription={product.description}>
       <Grid container spacing={4} justifyContent="center">
@@ -34,10 +38,7 @@ const ProductPage = () => {
             <Box sx={{ my: 2 }}>
               <Typography variant="subtitle2">Quantity</Typography>
               <ItemCounter />
-              <ProductSizeSelector
-                selectedSize={product.sizes[1]}
-                sizes={product.sizes}
-              />
+              <ProductSizeSelector sizes={product.sizes} selectedSize={'1L'} />
             </Box>
             <Button color="secondary" className="circular-btn" size="medium">
               Add to cart
@@ -48,6 +49,26 @@ const ProductPage = () => {
       </Grid>
     </ShopLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { slug = '' } = params as { slug: string };
+  const product = await productsDB.getProductBySlug(slug);
+
+  if (!product) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: {
+      product,
+    },
+  };
 };
 
 export default ProductPage;
