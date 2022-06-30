@@ -23,6 +23,13 @@ export const lightTheme = createTheme({
     },
   },
   components: {
+    MuiIconButton: {
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+        },
+      },
+    },
     MuiLink: {
       defaultProps: {
         underline: 'none',
@@ -69,7 +76,7 @@ export const lightTheme = createTheme({
         root: {
           textTransform: 'none',
           boxShadow: 'none',
-          borderRadius: 30,
+          borderRadius: 10,
           ':hover': {
             backgroundColor: 'rgba(0,0,0,0.05)',
             transition: 'all 0.3s ease-in-out',
@@ -77,7 +84,6 @@ export const lightTheme = createTheme({
         },
       },
     },
-
     MuiCard: {
       defaultProps: {
         elevation: 0,

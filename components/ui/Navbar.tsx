@@ -59,7 +59,10 @@ export const Navbar: FC = () => {
 
           <Box display="flex" gap={1}>
             <IconButton>
-              <SearchOutlined />
+              <Box display="flex" gap={1}>
+                <Typography variant="body1">search</Typography>
+                <SearchOutlined />
+              </Box>
             </IconButton>
 
             <NextLink href="/cart" passHref>

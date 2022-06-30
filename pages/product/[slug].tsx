@@ -29,16 +29,23 @@ const ProductPage: NextPage<Props> = ({ product }) => {
             </Typography>
 
             <Box sx={{ mt: 3 }}>
-              <Typography variant="subtitle1" fontWeight={700}>
+              <Typography variant="subtitle1" component="h2" fontWeight={700}>
                 Description
               </Typography>
               <Typography variant="body2">{product.description}</Typography>
             </Box>
 
             <Box sx={{ my: 2 }}>
-              <Typography variant="subtitle2">Quantity</Typography>
-              <ItemCounter />
-              <ProductSizeSelector sizes={product.sizes} selectedSize={'1L'} />
+              <Typography variant="subtitle2" component="h3">
+                Quantity
+              </Typography>
+              <Box display="flex" flexDirection="column" gap={1}>
+                <ItemCounter />
+                <ProductSizeSelector
+                  sizes={product.sizes}
+                  selectedSize={'1L'}
+                />
+              </Box>
             </Box>
             <Button color="secondary" className="circular-btn" size="medium">
               Add to cart
