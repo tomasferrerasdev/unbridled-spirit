@@ -2,11 +2,8 @@ import { Typography } from '@mui/material';
 import { NextPage } from 'next';
 import { ShopLayout } from '../../components/layouts';
 import { FullScreenLoading } from '../../components/ui';
-import { useProducts } from '../../hooks';
 
 const AccessoriesPage: NextPage = () => {
-  const { products, isLoading } = useProducts('/products?type=accessories');
-
   return (
     <ShopLayout
       title={'Unbridled spirit | Shop'}

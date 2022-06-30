@@ -1,13 +1,15 @@
 import { Typography } from '@mui/material';
-import type { NextPage } from 'next';
+import type { GetServerSideProps, NextPage } from 'next';
 import { ShopLayout } from '../../components/layouts';
 import { ProductList } from '../../components/products/ProductList';
-import { FullScreenLoading } from '../../components/ui/FullScreenLoading';
-import { useProducts } from '../../hooks';
+import { productsDB } from '../../database';
+import { Iproduct } from '../../interfaces/products';
 
-const SearchPage: NextPage = () => {
-  const { products, isLoading } = useProducts('/search/kentucky');
+interface Props {
+  products: Iproduct[];
+}
 
+const SearchPage: NextPage<Props> = ({ products }) => {
   return (
     <ShopLayout
       title={'Unbridled spirit | Search'}
@@ -16,15 +18,35 @@ const SearchPage: NextPage = () => {
       }
     >
       <Typography variant="h1" component="h1">
-        Search product
+        Product search
       </Typography>
       <Typography variant="h2" sx={{ mb: 1 }}>
         ABC123
       </Typography>
 
-      {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
+      <ProductList products={products} />
     </ShopLayout>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async ({ params }) => {
+  const { query = '' } = params as { query: string };
+  if (query.length === 0) {
+    return {
+      redirect: {
+        destination: '/',
+        permanent: true,
+      },
+    };
+  }
+
+  let products = await productsDB.getProductsByTerm(query);
+
+  return {
+    props: {
+      products,
+    },
+  };
 };
 
 export default SearchPage;

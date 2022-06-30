@@ -51,7 +51,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
   );
 };
 
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const productSlugs = await productsDB.getAllProductSlugs();
 
   return {
