@@ -11,7 +11,9 @@ import {
 } from '@mui/material';
 import { Container } from '@mui/system';
 import NextLink from 'next/link';
-import { FC } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useContext } from 'react';
+import { UiContext } from '../../context';
 
 const items = [
   'kentucky',
@@ -22,6 +24,9 @@ const items = [
 ];
 
 export const Navbar: FC = () => {
+  const { asPath } = useRouter();
+  const { toggleSideMenu } = useContext(UiContext);
+
   return (
     <AppBar position="fixed">
       <Container>
@@ -39,9 +44,9 @@ export const Navbar: FC = () => {
               <NextLink href={`/category/${item}`} passHref key={item}>
                 <Link>
                   <Button
-                    variant="text"
-                    color="secondary"
-                    sx={{ textTransform: 'capitalize' }}
+                    color={
+                      asPath === `/category/${item}` ? 'secondary' : 'info'
+                    }
                   >
                     {item}
                   </Button>
@@ -52,27 +57,25 @@ export const Navbar: FC = () => {
 
           <Box flex={1} />
 
-          <IconButton>
-            <SearchOutlined />
-          </IconButton>
+          <Box display="flex" gap={1}>
+            <IconButton>
+              <SearchOutlined />
+            </IconButton>
 
-          <NextLink href="/cart" passHref>
-            <Link>
-              <IconButton>
-                <Badge badgeContent={2} color="secondary">
-                  <ShoppingCartOutlined />
-                </Badge>
-              </IconButton>
-            </Link>
-          </NextLink>
+            <NextLink href="/cart" passHref>
+              <Link>
+                <IconButton>
+                  <Badge badgeContent={2} color="primary">
+                    <ShoppingCartOutlined />
+                  </Badge>
+                </IconButton>
+              </Link>
+            </NextLink>
 
-          <Button
-            disableRipple={true}
-            sx={{ p: 0, justifyContent: 'right' }}
-            className="nav-btn"
-          >
-            Menu
-          </Button>
+            <Button onClick={toggleSideMenu} color="info">
+              Menu
+            </Button>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

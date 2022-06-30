@@ -21,15 +21,27 @@ import {
   ListItemText,
   ListSubheader,
 } from '@mui/material';
+import { useRouter } from 'next/router';
+import { useContext } from 'react';
+import { UiContext } from '../../context';
 
 const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 
 export const SideMenu = () => {
+  const router = useRouter();
+  const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
+
+  const navigateTo = (url: string) => {
+    toggleSideMenu();
+    router.push(url);
+  };
+
   return (
     <Drawer
-      open={false}
+      open={isMenuOpen}
       anchor="right"
       sx={{ backdropFilter: 'blur(2px)', transition: 'all 0.5s ease-out' }}
+      onClose={toggleSideMenu}
     >
       <Box sx={{ width: 250, paddingTop: 5 }}>
         <List>
@@ -63,6 +75,9 @@ export const SideMenu = () => {
 
           {ValidTypes.map((categoryName) => (
             <ListItem
+              onClick={() =>
+                navigateTo(`/category/${categoryName.toLowerCase()}`)
+              }
               button
               sx={{ display: { xs: '', md: 'none' } }}
               key={categoryName}
