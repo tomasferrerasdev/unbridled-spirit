@@ -28,11 +28,11 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 component="img"
                 image={`/product/${product.images[0]}`}
                 alt={`${product.title} image`}
-                sx={{
-                  height: { xs: '200px', sm: '300', md: '400px' },
-                }}
                 className="fadeIn"
                 onLoad={() => setIsImageLoader(true)}
+                sx={{
+                  height: { xs: '200px', sm: '400', md: '400px' },
+                }}
               />
             </CardActionArea>
           </Link>
@@ -49,3 +49,12 @@ export const ProductCard: FC<Props> = ({ product }) => {
     </Grid>
   );
 };
+/*
+<CardMedia
+  component="img"
+  image={`/product/${product.images[0]}`}
+  alt={`${product.title} image`}
+  className="fadeIn"
+  onLoad={() => setIsImageLoader(true)}
+  height={400}
+/>;*/

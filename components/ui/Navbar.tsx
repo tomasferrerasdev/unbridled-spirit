@@ -33,7 +33,13 @@ export const Navbar: FC = () => {
         <Toolbar disableGutters={true}>
           <NextLink href="/" passHref>
             <Link display="flex" alignItems="center">
-              <Typography variant="h6">Unbridled spirit</Typography>
+              <Typography
+                variant="body1"
+                color="primary"
+                sx={{ fontSize: { sm: 20 } }}
+              >
+                Unbridled spirit
+              </Typography>
             </Link>
           </NextLink>
 
@@ -60,8 +66,10 @@ export const Navbar: FC = () => {
           <Box display="flex" gap={1}>
             <IconButton>
               <Box display="flex" gap={1}>
-                <Typography variant="body1">search</Typography>
-                <SearchOutlined />
+                <Typography variant="body1" color="primary">
+                  search
+                </Typography>
+                <SearchOutlined color="primary" />
               </Box>
             </IconButton>
 
