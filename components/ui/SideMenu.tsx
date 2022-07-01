@@ -30,6 +30,7 @@ const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 export const SideMenu = () => {
   const router = useRouter();
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
+
   const [searchTerm, setSearchTerm] = useState('');
 
   const onSearchTerm = () => {
