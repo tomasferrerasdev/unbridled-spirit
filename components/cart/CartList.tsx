@@ -27,12 +27,11 @@ export const CartList: FC<Props> = ({ editable = false }) => {
       {productsInCart.map((product) => (
         <Grid
           key={product.slug}
-          justifyContent={{ xs: 'space-between', sm: 'flex-start' }}
+          justifyContent="space-between"
           container
-          spacing={2}
+          spacing={{ xs: 1, sm: 1 }}
           sx={{
             mb: 1,
-            justifyContent: { sm: 'space-between' },
           }}
         >
           <Grid item xs={2}>
@@ -43,7 +42,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                     image={`/product/${product.images[0]}`}
                     component="img"
                     sx={{
-                      borderRadius: '8px',
+                      borderRadius: '4px',
                       aspectRatio: '1/1',
                     }}
                   />
@@ -53,11 +52,17 @@ export const CartList: FC<Props> = ({ editable = false }) => {
           </Grid>
           <Grid item xs={7}>
             <Box display="flex" flexDirection="column">
-              <Typography variant="body1">{product.title}</Typography>
-              <Typography variant="body1">
-                Size: <strong>750ml</strong>
-                {editable && <ItemCounter />}
-              </Typography>
+              <NextLink href="/products/slug" passHref>
+                <Link>
+                  <Typography variant="body1">{product.title}</Typography>
+                </Link>
+              </NextLink>
+
+              {editable ? (
+                <ItemCounter />
+              ) : (
+                <Typography variant="h5">3 items</Typography>
+              )}
             </Box>
           </Grid>
           <Grid

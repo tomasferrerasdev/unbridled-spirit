@@ -22,7 +22,7 @@ const CartPage = () => {
       <Typography variant="h2" sx={{ mb: 2 }}>
         All products
       </Typography>
-      <Grid container>
+      <Grid container spacing={2}>
         <Grid item xs={12} sm={7}>
           <CartList editable />
         </Grid>

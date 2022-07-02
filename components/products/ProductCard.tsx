@@ -3,6 +3,7 @@ import {
   Card,
   CardActionArea,
   CardMedia,
+  Chip,
   Grid,
   Link,
   Typography,
@@ -24,6 +25,19 @@ export const ProductCard: FC<Props> = ({ product }) => {
         <NextLink href={`/product/${product.slug}`} passHref prefetch={false}>
           <Link>
             <CardActionArea>
+              {product.inStock === 0 && (
+                <Chip
+                  color="primary"
+                  label="Out of stock"
+                  sx={{
+                    position: 'absolute',
+                    zIndex: '99',
+                    top: '10px',
+                    right: '10px',
+                  }}
+                />
+              )}
+
               <CardMedia
                 component="img"
                 image={`/product/${product.images[0]}`}
@@ -49,12 +63,3 @@ export const ProductCard: FC<Props> = ({ product }) => {
     </Grid>
   );
 };
-/*
-<CardMedia
-  component="img"
-  image={`/product/${product.images[0]}`}
-  alt={`${product.title} image`}
-  className="fadeIn"
-  onLoad={() => setIsImageLoader(true)}
-  height={400}
-/>;*/

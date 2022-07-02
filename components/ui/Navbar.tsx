@@ -122,6 +122,9 @@ export const Navbar: FC = () => {
               onClick={toggleSideMenu}
             >
               <Box display="flex" gap={1}>
+                <Typography variant="body1" color="primary">
+                  search
+                </Typography>
                 <SearchOutlined color="primary" />
               </Box>
             </IconButton>
