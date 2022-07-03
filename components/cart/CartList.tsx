@@ -10,7 +10,6 @@ import {
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { initialData } from '../../database/products';
-import { ItemCounter } from '../ui';
 
 interface Props {
   editable?: boolean;
@@ -59,7 +58,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
               </NextLink>
 
               {editable ? (
-                <ItemCounter />
+                <Typography>item counter</Typography>
               ) : (
                 <Typography variant="h5">3 items</Typography>
               )}
