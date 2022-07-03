@@ -20,7 +20,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
   const [isImageLoader, setIsImageLoader] = useState(false);
 
   return (
-    <Grid item xs={6} sm={4}>
+    <Grid item xs={6} sm={4} md={3}>
       <Card>
         <NextLink href={`/product/${product.slug}`} passHref prefetch={false}>
           <Link>
@@ -34,19 +34,20 @@ export const ProductCard: FC<Props> = ({ product }) => {
                     zIndex: '99',
                     top: '10px',
                     right: '10px',
+                    maxHeight: '21.875rem',
                   }}
                 />
               )}
 
               <CardMedia
+                sx={{
+                  height: { xs: '12.5rem', sm: '15.625rem', md: '18.75rem' },
+                }}
                 component="img"
                 image={`/product/${product.images[0]}`}
                 alt={`${product.title} image`}
                 className="fadeIn"
                 onLoad={() => setIsImageLoader(true)}
-                sx={{
-                  height: { xs: '200px', sm: '400', md: '400px' },
-                }}
               />
             </CardActionArea>
           </Link>

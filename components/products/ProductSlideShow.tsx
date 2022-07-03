@@ -15,7 +15,7 @@ export const ProductSlideShow: FC<Props> = ({ images }) => {
         return (
           <Box
             key={image}
-            sx={{ height: { xs: '400px', sm: '500px', md: '600px' } }}
+            sx={{ height: { xs: '25rem', sm: '31.25rem', md: '37.5rem' } }}
           >
             <div className={styles['each-slide']}>
               <div

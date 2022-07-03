@@ -37,7 +37,7 @@ export const ShopLayout: FC<Props> = ({
       >
         <Container
           sx={{
-            marginTop: { xs: ' 60px', sm: '100px' },
+            marginTop: { xs: ' 3.75rem', sm: '6.25rem' },
           }}
         >
           {children}
