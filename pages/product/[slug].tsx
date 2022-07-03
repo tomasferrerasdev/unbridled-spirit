@@ -23,7 +23,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     title: product.title,
     type: product.type,
     ABV: product.ABV,
-    quantity: product.quantity,
+    quantity: 1,
   });
 
   const onSelectedSize = (size: ISize) => {
@@ -31,6 +31,16 @@ const ProductPage: NextPage<Props> = ({ product }) => {
       ...currentProduct,
       size,
     }));
+  };
+  const onUpdateQuantity = (quantity: number) => {
+    settempCartProduct((currentProduct) => ({
+      ...currentProduct,
+      quantity,
+    }));
+  };
+
+  const onAddProduct = () => {
+    console.log({ tempCartProduct });
   };
 
   return (
@@ -69,7 +79,11 @@ const ProductPage: NextPage<Props> = ({ product }) => {
             </Box>
 
             <Box display="flex" flexDirection="column" gap={1} sx={{ my: 1 }}>
-              <ItemCounter />
+              <ItemCounter
+                maxValue={product.inStock}
+                updatedQuantity={onUpdateQuantity}
+                currentValue={tempCartProduct.quantity}
+              />
               <ProductSizeSelector
                 sizes={product.sizes}
                 selectedSize={tempCartProduct.size}

@@ -41,15 +41,6 @@ const rows = [
   { id: 4, paid: true, fullname: 'Luis Ferreras' },
   { id: 5, paid: true, fullname: 'Pessolano Hugo' },
   { id: 6, paid: false, fullname: 'Gusti Correa' },
-  { id: 7, paid: false, fullname: 'Dekoshi' },
-  { id: 8, paid: true, fullname: 'Quirogium' },
-  { id: 9, paid: true, fullname: 'Coscu' },
-  { id: 10, paid: true, fullname: 'Pelo' },
-  { id: 11, paid: false, fullname: 'Vladimir' },
-  { id: 12, paid: true, fullname: 'Dante' },
-  { id: 13, paid: false, fullname: 'Felipe' },
-  { id: 14, paid: true, fullname: 'Patricia' },
-  { id: 15, paid: true, fullname: 'Mache' },
 ];
 
 const HistoryPage = () => {
