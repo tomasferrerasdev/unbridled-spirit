@@ -66,10 +66,10 @@ export const CartList: FC<Props> = ({ editable = false }) => {
               </Grid>
               <Grid item xs={7}>
                 <Box display="flex" flexDirection="column">
-                  <Typography variant="body1">{product.title}</Typography>
-                  <Typography variant="body1">
-                    Size: <strong>{product.size}</strong>
+                  <Typography variant="body1" fontWeight={600}>
+                    {product.title}
                   </Typography>
+                  <Typography variant="body1">Size: {product.size}</Typography>
 
                   {editable ? (
                     <ItemCounter
