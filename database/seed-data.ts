@@ -163,7 +163,7 @@ export const initialData: SeedData = {
       tags: ['elijah', 'small', 'batch', 'craig'],
     },
     {
-      title: 'Evan Williams Single Barrel vintage bourbon 2013',
+      title: 'Evan Williams Single Barrel vintage',
       description:
         "This 5-time Whiskey of the Year award winner is hand selected by Heaven Hill's Master Distiller for characteristics unique to each vintage. Every bottle is marked with the vintage date it was put into oak, along with the year it was bottled and the serial number of the barrel that the Bourbon was drawn from. Bottled at 86.6 proof and from bourbons aged 7-8 years. Aromas of dark caramel, sweet oak and charred wood. Flavors are lush and spicy, oak with honey, apple and orange notes. The finish is long, graceful and relaxed. Smooth from start to finish, with a fair amount of oak and a medium body.",
       images: ['Evan-Williams-Single-Barrel-vintage-bourbon-whiskey-2013.webp'],
@@ -172,7 +172,7 @@ export const initialData: SeedData = {
       sizes: ['200ml', '375ml', '750ml', '1L'],
       type: 'single-barrel',
       ABV: '47%',
-      slug: 'evan-williams-single-barrel-vintage-bourbon-2013',
+      slug: 'evan-williams-single-barrel-vintage',
       tags: ['evan', 'williams', 'single-barrel', 'vintage'],
     },
     {

@@ -18,7 +18,6 @@ interface Props {
 
 export const ProductCard: FC<Props> = ({ product }) => {
   const [isImageLoader, setIsImageLoader] = useState(false);
-  console.log(product.images);
   return (
     <Grid item xs={6} sm={4} md={3}>
       <Card>
