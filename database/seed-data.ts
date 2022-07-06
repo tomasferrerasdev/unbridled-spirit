@@ -1,3 +1,5 @@
+import bcrypt from 'bcryptjs';
+
 interface SeedProduct {
   description: string;
   images: string[];
@@ -11,14 +13,37 @@ interface SeedProduct {
   ABV: string;
 }
 
+interface SeedUser {
+  name: String;
+  email: String;
+  password: String;
+  role: 'admin' | 'client';
+}
+
 type ValidSizes = '1L' | '750ml' | '375ml' | '200ml';
 type ValidTypes = 'kentucky' | 'tennessee' | 'straight' | 'single-barrel';
 
 interface SeedData {
+  users: SeedUser[];
   products: SeedProduct[];
 }
 
 export const initialData: SeedData = {
+  users: [
+    {
+      name: 'Tomas Ferreras',
+      email: 'tomas@google.com',
+      password: bcrypt.hashSync('123456'),
+      role: 'admin',
+    },
+    {
+      name: 'Ivan Peuscovich',
+      email: 'ivan@google.com',
+      password: bcrypt.hashSync('123456'),
+      role: 'client',
+    },
+  ],
+
   products: [
     {
       title: 'Bourbon Cream',
