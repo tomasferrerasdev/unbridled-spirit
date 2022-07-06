@@ -19,7 +19,7 @@ import { Container } from '@mui/system';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useContext, useState } from 'react';
-import { UiContext } from '../../context';
+import { CartContext, UiContext } from '../../context';
 
 const items = [
   'kentucky',
@@ -32,6 +32,7 @@ const items = [
 export const Navbar: FC = () => {
   const { asPath, push } = useRouter();
   const { toggleSideMenu } = useContext(UiContext);
+  const { numberOfItems } = useContext(CartContext);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [isSearchVisible, setisSearchVisible] = useState(false);
@@ -132,7 +133,10 @@ export const Navbar: FC = () => {
             <NextLink href="/cart" passHref>
               <Link>
                 <IconButton>
-                  <Badge badgeContent={2} color="primary">
+                  <Badge
+                    badgeContent={numberOfItems > 9 ? '+9' : numberOfItems}
+                    color="primary"
+                  >
                     <ShoppingCartOutlined />
                   </Badge>
                 </IconButton>
