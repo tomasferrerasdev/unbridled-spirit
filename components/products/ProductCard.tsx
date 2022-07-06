@@ -2,12 +2,12 @@ import {
   Box,
   Card,
   CardActionArea,
-  CardMedia,
   Chip,
   Grid,
   Link,
   Typography,
 } from '@mui/material';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import { FC, useState } from 'react';
 import { Iproduct } from '../../interfaces';
@@ -33,20 +33,17 @@ export const ProductCard: FC<Props> = ({ product }) => {
                     zIndex: '99',
                     top: '10px',
                     right: '10px',
-                    maxHeight: '21.875rem',
                   }}
                 />
               )}
-
-              <CardMedia
-                sx={{
-                  height: { xs: '12.5rem', sm: '15.625rem', md: '18.75rem' },
-                }}
-                component="img"
-                image={`/product/${product.images}`}
-                alt={`${product.title} image`}
+              <Image
+                priority
+                src={`/product/${product.images}`}
+                height={360}
+                width={360}
                 className="fadeIn"
                 onLoad={() => setIsImageLoader(true)}
+                alt={product.title}
               />
             </CardActionArea>
           </Link>
