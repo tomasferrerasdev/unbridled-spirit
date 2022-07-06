@@ -5,6 +5,7 @@ This Guide / Doc is still in progress keep coming to check updates ✅✅✅
 - MUI
 - MongoDB
 - Docker
+- JWT (Json Web Tokens)
 
 ![home](https://user-images.githubusercontent.com/107090584/176201090-0132d9bf-c1f1-48ee-896b-970b7e3c5717.png)
 
