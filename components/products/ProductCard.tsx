@@ -44,7 +44,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                   height: { xs: '12.5rem', sm: '15.625rem', md: '18.75rem' },
                 }}
                 component="img"
-                image={`/product/${product.images[0]}`}
+                image={`/product/${product.images}`}
                 alt={`${product.title} image`}
                 className="fadeIn"
                 onLoad={() => setIsImageLoader(true)}
