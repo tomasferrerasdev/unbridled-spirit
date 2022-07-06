@@ -38,7 +38,7 @@ const RegisterPage = () => {
             </Button>
           </Grid>
           <Grid item xs={12} display="flex" justifyContent="end">
-            <NextLink href="/auth/register" passHref>
+            <NextLink href="/auth/login" passHref>
               <Link underline="always">Have an account already?</Link>
             </NextLink>
           </Grid>
