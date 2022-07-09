@@ -137,7 +137,7 @@ export const Navbar: FC = () => {
                     badgeContent={numberOfItems > 9 ? '+9' : numberOfItems}
                     color="primary"
                   >
-                    <ShoppingCartOutlined />
+                    <ShoppingCartOutlined color="primary" />
                   </Badge>
                 </IconButton>
               </Link>

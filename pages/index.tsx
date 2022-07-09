@@ -20,7 +20,6 @@ const HomePage: NextPage = () => {
       <Typography variant="h2" sx={{ mb: 1 }}>
         All products
       </Typography>
-
       {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
       <Footer />
     </ShopLayout>
