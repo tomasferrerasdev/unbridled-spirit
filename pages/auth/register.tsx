@@ -9,10 +9,11 @@ import {
   Typography,
 } from '@mui/material';
 import NextLink from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { unbridledSpiritAPI } from '../../api';
 import { AuthLayout } from '../../components/layouts';
+import { AuthContext } from '../../context';
 import { validations } from '../../utils';
 
 type FormData = {
@@ -20,7 +21,11 @@ type FormData = {
   email: string;
   password: string;
 };
+
 const RegisterPage = () => {
+  const router = useRouter();
+  const { registerUser } = useContext(AuthContext);
+
   const {
     register,
     handleSubmit,
@@ -28,23 +33,22 @@ const RegisterPage = () => {
   } = useForm<FormData>();
 
   const [showError, setshowError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const onRegisterUser = async ({ name, email, password }: FormData) => {
-    try {
-      const { data } = await unbridledSpiritAPI.post('/user/register', {
-        name,
-        email,
-        password,
-      });
-      const { token, user } = data;
+    setshowError(false);
+    const { hasError, message } = await registerUser(name, email, password);
 
-      console.log({ token, user });
-    } catch (error) {
+    if (hasError) {
       setshowError(true);
+      setErrorMessage(message!);
       setTimeout(() => {
         setshowError(false);
       }, 4000);
+      return;
     }
+
+    router.replace('/');
   };
 
   return (

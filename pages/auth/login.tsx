@@ -9,13 +9,17 @@ import {
   Typography,
 } from '@mui/material';
 import NextLink from 'next/link';
-import { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { unbridledSpiritAPI } from '../../api';
 import { AuthLayout } from '../../components/layouts';
+import { AuthContext } from '../../context';
 import { validations } from '../../utils';
 
 const LoginPage = () => {
+  const router = useRouter();
+  const { loginUser } = useContext(AuthContext);
+
   type FormData = {
     email: string;
     password: string;
@@ -31,20 +35,18 @@ const LoginPage = () => {
 
   const onLoginUser = async ({ email, password }: FormData) => {
     setshowError(false);
-    try {
-      const { data } = await unbridledSpiritAPI.post('/user/login', {
-        email,
-        password,
-      });
-      const { token, user } = data;
 
-      console.log({ token, user });
-    } catch (error) {
+    const isValidLogin = await loginUser(email, password);
+
+    if (!isValidLogin) {
       setshowError(true);
       setTimeout(() => {
         setshowError(false);
       }, 4000);
+      return;
     }
+
+    router.replace('/');
   };
 
   return (
