@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Cookies from 'js-cookie';
-import { FC, PropsWithChildren, useReducer } from 'react';
+import { FC, PropsWithChildren, useEffect, useReducer } from 'react';
 import { unbridledSpiritAPI } from '../../api';
 import { IUser } from '../../interfaces';
 import { AuthContext, authReducer } from './';
@@ -18,6 +18,22 @@ const AUTH_INITIAL_STATE: AuthState = {
 
 export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, AUTH_INITIAL_STATE);
+
+  useEffect(() => {
+    checkToken();
+  }, []);
+
+  const checkToken = async () => {
+    try {
+      const { data } = await unbridledSpiritAPI.get('user/validate-jwt');
+      const { token, user } = data;
+
+      Cookies.set('token', token);
+      dispatch({ type: '[Auth] - Login', payload: user });
+    } catch (error) {
+      Cookies.remove('token');
+    }
+  };
 
   const loginUser = async (
     email: string,
