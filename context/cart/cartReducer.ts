@@ -1,5 +1,5 @@
-import { CartState } from '.';
 import { IcartProduct } from '../../interfaces';
+import { CartState } from './';
 
 type CartActionType =
   | {
@@ -19,7 +19,7 @@ type CartActionType =
       };
     };
 
-export const cartReducer = (
+export const CartReducer = (
   state: CartState,
   action: CartActionType
 ): CartState => {
