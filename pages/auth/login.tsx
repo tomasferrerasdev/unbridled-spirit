@@ -1,6 +1,17 @@
-import { Box, Button, Grid, Link, TextField, Typography } from '@mui/material';
+import { ErrorOutline } from '@mui/icons-material';
+import {
+  Box,
+  Button,
+  Chip,
+  Grid,
+  Link,
+  TextField,
+  Typography,
+} from '@mui/material';
 import NextLink from 'next/link';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { unbridledSpiritAPI } from '../../api';
 import { AuthLayout } from '../../components/layouts';
 import { validations } from '../../utils';
 
@@ -16,8 +27,24 @@ const LoginPage = () => {
     formState: { errors },
   } = useForm<FormData>();
 
-  const onLoginUser = (data: FormData) => {
-    console.log({ data });
+  const [showError, setshowError] = useState(false);
+
+  const onLoginUser = async ({ email, password }: FormData) => {
+    setshowError(false);
+    try {
+      const { data } = await unbridledSpiritAPI.post('/user/login', {
+        email,
+        password,
+      });
+      const { token, user } = data;
+
+      console.log({ token, user });
+    } catch (error) {
+      setshowError(true);
+      setTimeout(() => {
+        setshowError(false);
+      }, 4000);
+    }
   };
 
   return (
@@ -29,6 +56,18 @@ const LoginPage = () => {
               <Typography variant="h1" component="h1">
                 LogIn
               </Typography>
+              <Chip
+                label="User or password incorrect"
+                color="error"
+                icon={<ErrorOutline />}
+                className="fadeIn"
+                sx={{
+                  display: showError ? 'flex' : 'none',
+                  position: 'absolute',
+                  top: '1rem',
+                  right: '1rem',
+                }}
+              />
             </Grid>
 
             <Grid item xs={12}>

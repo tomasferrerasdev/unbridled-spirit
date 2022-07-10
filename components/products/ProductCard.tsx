@@ -41,6 +41,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 src={`/product/${product.images}`}
                 height={360}
                 width={360}
+                layout="responsive"
                 className="fadeIn"
                 onLoad={() => setIsImageLoader(true)}
                 alt={product.title}
