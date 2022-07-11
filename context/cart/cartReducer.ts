@@ -65,6 +65,3 @@ export const CartReducer = (
       return state;
   }
 };
-function newFunction() {
-  return {};
-}
