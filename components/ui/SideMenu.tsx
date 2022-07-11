@@ -1,8 +1,6 @@
 import {
   AccountCircleOutlined,
-  AdminPanelSettings,
   ArrowForwardOutlined,
-  CategoryOutlined,
   ConfirmationNumberOutlined,
   LoginOutlined,
   SearchOutlined,
@@ -19,17 +17,18 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
-  ListSubheader,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
-import { UiContext } from '../../context';
+import { AuthContext, UiContext } from '../../context';
+import { AdminSideMenu } from './AdminSideMenu';
 
 const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 
 export const SideMenu = () => {
   const router = useRouter();
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
+  const { user, isLoggedIn } = useContext(AuthContext);
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -70,19 +69,23 @@ export const SideMenu = () => {
             />
           </ListItem>
 
-          <ListItem button>
-            <ListItemIcon>
-              <AccountCircleOutlined />
-            </ListItemIcon>
-            <ListItemText primary={'Profile'} />
-          </ListItem>
+          {isLoggedIn && (
+            <>
+              <ListItem button>
+                <ListItemIcon>
+                  <AccountCircleOutlined />
+                </ListItemIcon>
+                <ListItemText primary={'Profile'} />
+              </ListItem>
 
-          <ListItem button>
-            <ListItemIcon>
-              <ConfirmationNumberOutlined />
-            </ListItemIcon>
-            <ListItemText primary={'My orders'} />
-          </ListItem>
+              <ListItem button>
+                <ListItemIcon>
+                  <ConfirmationNumberOutlined />
+                </ListItemIcon>
+                <ListItemText primary={'My orders'} />
+              </ListItem>
+            </>
+          )}
 
           {ValidTypes.map((categoryName) => (
             <ListItem
@@ -100,42 +103,24 @@ export const SideMenu = () => {
             </ListItem>
           ))}
 
-          <ListItem button>
-            <ListItemIcon>
-              <VpnKeyOutlined />
-            </ListItemIcon>
-            <ListItemText primary={'LogIn'} />
-          </ListItem>
-
-          <ListItem button>
-            <ListItemIcon>
-              <LoginOutlined />
-            </ListItemIcon>
-            <ListItemText primary={'LogOut'} />
-          </ListItem>
+          {isLoggedIn ? (
+            <ListItem button>
+              <ListItemIcon>
+                <LoginOutlined />
+              </ListItemIcon>
+              <ListItemText primary={'LogOut'} />
+            </ListItem>
+          ) : (
+            <ListItem button>
+              <ListItemIcon>
+                <VpnKeyOutlined />
+              </ListItemIcon>
+              <ListItemText primary={'LogIn'} />
+            </ListItem>
+          )}
 
           <Divider />
-
-          <ListSubheader>Admin Panel</ListSubheader>
-          <ListItem button>
-            <ListItemIcon>
-              <CategoryOutlined />
-            </ListItemIcon>
-            <ListItemText primary={'Products'} />
-          </ListItem>
-          <ListItem button>
-            <ListItemIcon>
-              <ConfirmationNumberOutlined />
-            </ListItemIcon>
-            <ListItemText primary={'Orders'} />
-          </ListItem>
-
-          <ListItem button>
-            <ListItemIcon>
-              <AdminPanelSettings />
-            </ListItemIcon>
-            <ListItemText primary={'Users'} />
-          </ListItem>
+          {user?.role === 'admin' && <AdminSideMenu />}
         </List>
       </Box>
     </Drawer>

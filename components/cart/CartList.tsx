@@ -59,7 +59,7 @@ export const CartList: FC<Props> = ({ editable = false }) => {
                         layout="responsive"
                         className="fadeIn"
                         alt={product.title}
-                        priority
+                        priority={true}
                       />
                     </CardActionArea>
                   </Link>

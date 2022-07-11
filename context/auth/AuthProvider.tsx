@@ -24,6 +24,10 @@ export const AuthProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   const checkToken = async () => {
+    if (!Cookies.get('token')) {
+      return;
+    }
+
     try {
       const { data } = await unbridledSpiritAPI.get('user/validate-jwt');
       const { token, user } = data;
