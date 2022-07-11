@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 import Image from 'next/image';
 import NextLink from 'next/link';
-import { FC, useState } from 'react';
+import { FC } from 'react';
 import { Iproduct } from '../../interfaces';
 
 interface Props {
@@ -17,7 +17,6 @@ interface Props {
 }
 
 export const ProductCard: FC<Props> = ({ product }) => {
-  const [isImageLoader, setIsImageLoader] = useState(false);
   return (
     <Grid item xs={6} sm={4} md={3}>
       <Card>
@@ -36,6 +35,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
                   }}
                 />
               )}
+
               <Image
                 priority
                 src={`/product/${product.images}`}
@@ -43,7 +43,6 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 width={360}
                 layout="responsive"
                 className="fadeIn"
-                onLoad={() => setIsImageLoader(true)}
                 alt={product.title}
               />
             </CardActionArea>
@@ -51,10 +50,7 @@ export const ProductCard: FC<Props> = ({ product }) => {
         </NextLink>
       </Card>
 
-      <Box
-        sx={{ mt: 1, display: isImageLoader ? 'block' : 'none' }}
-        className="fadeIn"
-      >
+      <Box className="fadeIn">
         <Typography fontWeight={700}>{product.title}</Typography>
         <Typography fontWeight={400}>${product.price}</Typography>
       </Box>

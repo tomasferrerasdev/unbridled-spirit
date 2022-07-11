@@ -49,7 +49,7 @@ export const initialData: SeedData = {
       title: "Baker's 7 Year Old",
       description:
         "Baker's 7 Year Old Kentucky Straight Bourbon Whiskey is named after Baker Beam, the grand nephew of of the legendary Jim Beam. The bourbon is made from a mash dominated by corn and fermented using a special strain of jug yeast that has been in the Beam family for over six decades. Following fermentation, the bourbon is distilled and then matured in new, American oak casks for a minimum of seven years. As a result, the bourbon has an aroma of honeyed fruit, creamy vanilla and caramel. The aroma gives way to notes of roasted nuts, candied fruits, vanilla, toffee and milk chocolate. The finish is rich and lasting, with sweet and spicy flavors mingling with each other.",
-      images: ['Bakers-7-YO-Bourbon-Whiskey.webp'],
+      images: ['bakers-7-yo-bourbon-whiskey.webp'],
       inStock: 0,
       price: 69.99,
       sizes: ['200ml', '375ml', '750ml', '1L'],

@@ -4,6 +4,7 @@ import { IcartProduct } from '../../interfaces/cart';
 import { CartContext, CartReducer } from './';
 
 export interface CartState {
+  isLoaded: boolean;
   cart: IcartProduct[];
   children?: React.ReactNode;
   numberOfItems: number;
@@ -13,6 +14,7 @@ export interface CartState {
 }
 
 const CART_INITIAL_STATE: CartState = {
+  isLoaded: false,
   cart: Cookie.get('cart') ? JSON.parse(Cookie.get('cart')!) : [],
   numberOfItems: 0,
   subTotal: 0,
