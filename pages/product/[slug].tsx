@@ -1,10 +1,10 @@
 import { Box, Button, Chip, Grid, Typography } from '@mui/material';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
+import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { ShopLayout } from '../../components/layouts';
 import { ProductSizeSelector } from '../../components/products';
-import { ProductSlideShow } from '../../components/products/ProductSlideShow';
 import { ItemCounter } from '../../components/ui';
 import { CartContext } from '../../context/cart/CartContext';
 import { productsDB } from '../../database';
@@ -57,10 +57,14 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     <ShopLayout title={product.title} pageDescription={product.description}>
       <Grid container spacing={4} justifyContent="left">
         <Grid item xs={12} md={6}>
-          <ProductSlideShow
-            stock={product.inStock}
-            images={product.images}
-            title={product.title}
+          <Image
+            src={`/product/${product.images}`}
+            priority={true}
+            height={360}
+            width={360}
+            layout="responsive"
+            className="fadeIn"
+            alt={product.title}
           />
           {product.inStock === 0 && (
             <Chip
