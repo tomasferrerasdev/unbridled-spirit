@@ -17,6 +17,7 @@ import {
   ListItem,
   ListItemIcon,
   ListItemText,
+  ListSubheader,
 } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
@@ -28,7 +29,7 @@ const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 export const SideMenu = () => {
   const router = useRouter();
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
-  const { user, isLoggedIn } = useContext(AuthContext);
+  const { user, isLoggedIn, logoutUser } = useContext(AuthContext);
 
   const [searchTerm, setSearchTerm] = useState('');
 
@@ -87,6 +88,28 @@ export const SideMenu = () => {
             </>
           )}
 
+          {isLoggedIn ? (
+            <ListItem button onClick={logoutUser}>
+              <ListItemIcon>
+                <LoginOutlined />
+              </ListItemIcon>
+              <ListItemText primary={'LogOut'} />
+            </ListItem>
+          ) : (
+            <ListItem
+              button
+              onClick={() => navigateTo(`/auth/login?p=${router.asPath}`)}
+            >
+              <ListItemIcon>
+                <VpnKeyOutlined />
+              </ListItemIcon>
+              <ListItemText primary={'LogIn'} />
+            </ListItem>
+          )}
+
+          <ListSubheader sx={{ display: { xs: '', md: 'none' } }}>
+            Products
+          </ListSubheader>
           {ValidTypes.map((categoryName) => (
             <ListItem
               onClick={() =>
@@ -102,22 +125,6 @@ export const SideMenu = () => {
               <ListItemText primary={categoryName} />
             </ListItem>
           ))}
-
-          {isLoggedIn ? (
-            <ListItem button>
-              <ListItemIcon>
-                <LoginOutlined />
-              </ListItemIcon>
-              <ListItemText primary={'LogOut'} />
-            </ListItem>
-          ) : (
-            <ListItem button>
-              <ListItemIcon>
-                <VpnKeyOutlined />
-              </ListItemIcon>
-              <ListItemText primary={'LogIn'} />
-            </ListItem>
-          )}
 
           <Divider />
           {user?.role === 'admin' && <AdminSideMenu />}
