@@ -1,8 +1,7 @@
 import Cookie from 'js-cookie';
 import { FC, PropsWithChildren, useEffect, useReducer } from 'react';
 import { IcartProduct } from '../../interfaces/cart';
-import { CartContext } from './';
-import { CartReducer } from './CartReducer';
+import { CartContext, CartReducer } from './';
 
 export interface CartState {
   cart: IcartProduct[];
