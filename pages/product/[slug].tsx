@@ -57,7 +57,23 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     <ShopLayout title={product.title} pageDescription={product.description}>
       <Grid container spacing={4} justifyContent="left">
         <Grid item xs={12} md={6}>
-          <ProductSlideShow stock={product.inStock} images={product.images} />
+          <ProductSlideShow
+            stock={product.inStock}
+            images={product.images}
+            title={product.title}
+          />
+          {product.inStock === 0 && (
+            <Chip
+              color="primary"
+              label="Out of stock"
+              sx={{
+                position: 'absolute',
+                zIndex: '99',
+                top: '10px',
+                right: '10px',
+              }}
+            />
+          )}
         </Grid>
 
         <Grid item xs={12} md={6}>

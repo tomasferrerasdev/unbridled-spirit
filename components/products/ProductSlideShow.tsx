@@ -1,38 +1,25 @@
-import { Box, Chip } from '@mui/material';
+import { Box } from '@mui/material';
+import Image from 'next/image';
 import { FC } from 'react';
 
 interface Props {
   images: string[];
   stock: number;
+  title: string;
 }
 
-export const ProductSlideShow: FC<Props> = ({ images, stock }) => {
+export const ProductSlideShow: FC<Props> = ({ images, title }) => {
   return (
     <Box key={images[0]}>
-      <Box
-        position="relative"
-        sx={{
-          backgroundImage: `url(${images})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          display: 'flex',
-          justifyContent: 'center',
-          height: { xs: '14rem', md: '40.625rem' },
-        }}
-      >
-        {stock === 0 && (
-          <Chip
-            color="primary"
-            label="Out of stock"
-            sx={{
-              position: 'absolute',
-              zIndex: '99',
-              top: '10px',
-              right: '10px',
-            }}
-          />
-        )}
-      </Box>
+      <Image
+        src={`/product/${images}`}
+        priority={true}
+        height={360}
+        width={360}
+        layout="responsive"
+        className="fadeIn"
+        alt={title}
+      />
     </Box>
   );
 };
