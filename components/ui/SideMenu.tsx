@@ -107,7 +107,12 @@ export const SideMenu = () => {
             </ListItem>
           )}
 
-          <ListSubheader sx={{ display: { xs: '', md: 'none' } }}>
+          <ListSubheader
+            sx={{
+              display: { xs: 'flex', md: 'none' },
+              alignItems: 'center',
+            }}
+          >
             Products
           </ListSubheader>
           {ValidTypes.map((categoryName) => (

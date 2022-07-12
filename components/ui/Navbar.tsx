@@ -16,6 +16,7 @@ import {
   Typography,
 } from '@mui/material';
 import { Container } from '@mui/system';
+import Image from 'next/image';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useContext, useState } from 'react';
@@ -45,39 +46,45 @@ export const Navbar: FC = () => {
     <AppBar position="fixed">
       <Container>
         <Toolbar disableGutters={true}>
-          <NextLink href="/" passHref>
-            <Link display="flex" alignItems="center">
-              <Typography
-                variant="body1"
-                color="primary"
-                sx={{ fontSize: { sm: 20 } }}
-              >
-                Unbridled spirit
-              </Typography>
-            </Link>
-          </NextLink>
+          <Box display="flex" gap={2}>
+            <NextLink href="/" passHref>
+              <Link display="flex" alignItems="center">
+                <Box
+                  alignItems="center"
+                  sx={{ display: { xs: 'none', sm: 'flex' } }}
+                >
+                  <Image priority src="/icons.svg" width={20} height={20} />
+                </Box>
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  sx={{ fontSize: { sm: 20 }, padding: '0 5px' }}
+                >
+                  Unbridled spirit
+                </Typography>
+              </Link>
+            </NextLink>
 
-          <Box flex={1} />
-
-          <Box
-            sx={{
-              display: isSearchVisible ? 'none' : { xs: 'none', md: 'block' },
-            }}
-            className="fadeIn"
-          >
-            {items.map((item) => (
-              <NextLink href={`/category/${item}`} passHref key={item}>
-                <Link>
-                  <Button
-                    color={
-                      asPath === `/category/${item}` ? 'secondary' : 'info'
-                    }
-                  >
-                    {item}
-                  </Button>
-                </Link>
-              </NextLink>
-            ))}
+            <Box
+              sx={{
+                display: isSearchVisible ? 'none' : { xs: 'none', md: 'block' },
+              }}
+              className="fadeIn"
+            >
+              {items.map((item) => (
+                <NextLink href={`/category/${item}`} passHref key={item}>
+                  <Link>
+                    <Button
+                      color={
+                        asPath === `/category/${item}` ? 'secondary' : 'info'
+                      }
+                    >
+                      {item}
+                    </Button>
+                  </Link>
+                </NextLink>
+              ))}
+            </Box>
           </Box>
 
           <Box flex={1} />
