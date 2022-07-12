@@ -1,7 +1,7 @@
 import { Container } from '@mui/material';
 import Head from 'next/head';
 import { FC } from 'react';
-import { Navbar, SideMenu } from '../ui';
+import { Footer, Navbar, SideMenu } from '../ui';
 
 interface Props {
   title: string;
@@ -41,9 +41,11 @@ export const ShopLayout: FC<Props> = ({
           }}
         >
           {children}
+          <footer>
+            <Footer />
+          </footer>
         </Container>
       </main>
-      <footer>{/* TODO: custon footer*/}</footer>
     </>
   );
 };
