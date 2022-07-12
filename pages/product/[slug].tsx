@@ -81,7 +81,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
         </Grid>
 
         <Grid item xs={12} md={6}>
-          <Box display="flex" flexDirection="column">
+          <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="h1" component="h1">
               {product.title}
             </Typography>

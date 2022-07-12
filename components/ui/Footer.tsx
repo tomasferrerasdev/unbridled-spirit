@@ -42,7 +42,7 @@ export const Footer = () => {
   return (
     <Box mt={20}>
       <Grid container spacing={2} display="flex" justifyContent="center" mb={5}>
-        <Grid item xs={12} md={3} position="relative">
+        <Grid item xs={12} sm={4} md={3} position="relative">
           <Typography component="h1" variant="h1" fontSize={24} mb={2}>
             Our Products
           </Typography>
@@ -55,11 +55,11 @@ export const Footer = () => {
           </List>
         </Grid>
 
-        <Grid item xs={12} md={3} display="flex" justifyContent="center">
+        <Grid item xs={12} sm={4} md={3} display="flex" justifyContent="center">
           <Divider orientation="vertical" />
         </Grid>
 
-        <Grid item xs={12} md={3} position="relative">
+        <Grid item xs={12} sm={4} md={3} position="relative">
           <Typography component="h1" variant="h1" fontSize={24} mb={2}>
             More about
           </Typography>
@@ -92,7 +92,7 @@ export const Footer = () => {
 
       <Grid container spacing={2} mb={10} mt={10}>
         {bottomFooterItems.map((item) => (
-          <Grid item xs={12} md={2} sm={4} key={item}>
+          <Grid item xs={6} sm={4} md={2} key={item}>
             <Typography variant="body1" component="p">
               {item}
             </Typography>
