@@ -40,7 +40,17 @@ export const ShopLayout: FC<Props> = ({
             marginTop: { xs: ' 3.75rem', sm: '5rem' },
           }}
         >
-          {children}
+          <Container
+            sx={{
+              minHeight: 'calc(100vh - 300px)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+            disableGutters
+          >
+            {children}
+          </Container>
           <footer>
             <Footer />
           </footer>

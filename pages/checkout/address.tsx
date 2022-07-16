@@ -13,7 +13,7 @@ import { ShopLayout } from '../../components/layouts';
 const AddressPage = () => {
   return (
     <ShopLayout
-      title={'Unbridled spirit | Adress'}
+      title={'Unbridled spirit | Address'}
       pageDescription={'Confirm shipping address'}
     >
       <Typography variant="h1" component="h1">
