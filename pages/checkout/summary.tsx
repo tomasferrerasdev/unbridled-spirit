@@ -38,7 +38,7 @@ const SummaryPage = () => {
 
               <Box display="flex" justifyContent="space-between">
                 <Typography variant="subtitle1">Shipping Address</Typography>
-                <NextLink href="/checkout/adress" passHref>
+                <NextLink href="/checkout/address" passHref>
                   <Link underline="always">Edit</Link>
                 </NextLink>
               </Box>
