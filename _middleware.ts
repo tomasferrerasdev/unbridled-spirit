@@ -1,7 +1,10 @@
 import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 import { jwt } from './utils';
 
-export async function middleware(req: NextRequest, event: NextFetchEvent) {
+export async function middleware(
+  req: NextRequest,
+  event: NextFetchEvent
+): Promise<NextResponse> {
   const { token = '' } = req.cookies;
 
   //return new Response('Token: ' + token);
