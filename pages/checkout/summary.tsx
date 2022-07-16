@@ -9,10 +9,30 @@ import {
   Typography,
 } from '@mui/material';
 import NextLink from 'next/link';
+import { useContext } from 'react';
 import { CartList, OrderSummary } from '../../components/cart';
 import { ShopLayout } from '../../components/layouts';
+import { CartContext } from '../../context/cart/CartContext';
+import { countries } from '../../utils';
 
 const SummaryPage = () => {
+  const { shippingAddress, numberOfItems } = useContext(CartContext);
+
+  if (!shippingAddress) {
+    return <></>;
+  }
+
+  const {
+    firstName,
+    lastName,
+    phone,
+    address,
+    address2 = '',
+    city,
+    country,
+    zip,
+  } = shippingAddress;
+
   return (
     <ShopLayout
       title={'Unbridled spirit | Summary'}
@@ -32,7 +52,8 @@ const SummaryPage = () => {
           <Card className="summary-card">
             <CardContent>
               <Typography variant="h2" component="h2">
-                Summary (3 products)
+                Summary ({numberOfItems}
+                {numberOfItems > 1 ? ' products' : ' product'})
               </Typography>
               <Divider sx={{ my: 1 }} />
 
@@ -42,11 +63,20 @@ const SummaryPage = () => {
                   <Link underline="always">Edit</Link>
                 </NextLink>
               </Box>
-              <Typography>Tomas Ferreras</Typography>
-              <Typography>721 Lewis Ave</Typography>
-              <Typography>Gold Bar, 98251</Typography>
-              <Typography>United States</Typography>
-              <Typography>+1-202-555-0133</Typography>
+              <Typography>
+                {firstName} {lastName}
+              </Typography>
+              <Typography>
+                {address}
+                {address2 ? `, ${address2}` : ''}
+              </Typography>
+              <Typography>
+                {city}, {zip}
+              </Typography>
+              <Typography>
+                {countries.find((c) => c.code === country)?.name}
+              </Typography>
+              <Typography>{phone}</Typography>
               <Divider sx={{ my: 1 }} />
 
               <Box display="flex" justifyContent="space-between">
