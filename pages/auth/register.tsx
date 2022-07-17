@@ -123,13 +123,7 @@ const RegisterPage = () => {
             </Grid>
 
             <Grid item xs={12}>
-              <Button
-                color="secondary"
-                className="circular-btn"
-                size="large"
-                fullWidth
-                type="submit"
-              >
+              <Button color="secondary" size="large" fullWidth type="submit">
                 Register
               </Button>
             </Grid>

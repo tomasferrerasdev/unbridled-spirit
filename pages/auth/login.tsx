@@ -105,13 +105,7 @@ const LoginPage = () => {
               />
             </Grid>
             <Grid item xs={12}>
-              <Button
-                type="submit"
-                color="secondary"
-                className="circular-btn"
-                size="large"
-                fullWidth
-              >
+              <Button type="submit" color="secondary" size="large" fullWidth>
                 Log in
               </Button>
             </Grid>
