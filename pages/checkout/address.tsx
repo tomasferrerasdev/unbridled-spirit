@@ -146,9 +146,9 @@ const AddressPage = () => {
             <FormControl fullWidth>
               <TextField
                 select
-                defaultValue={countries[0].code}
                 variant="filled"
                 label="Country"
+                defaultValue="USA"
                 {...register('country', {
                   required: 'Required field',
                 })}
