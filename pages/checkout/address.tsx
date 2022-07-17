@@ -26,7 +26,7 @@ type FormData = {
   phone: string;
 };
 
-const getAddressDataFromCookies = (): FormData => {
+const getAddressFromCookies = (): FormData => {
   return {
     firstName: Cookies.get('firstName') || '',
     lastName: Cookies.get('lastName') || '',
@@ -41,21 +41,24 @@ const getAddressDataFromCookies = (): FormData => {
 
 const AddressPage = () => {
   const router = useRouter();
-  const { updateShippingAddress } = useContext(CartContext);
+
+  const { updateAddress } = useContext(CartContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>({
-    defaultValues: getAddressDataFromCookies(),
+    defaultValues: getAddressFromCookies(),
   });
 
   const onSubmitAddress = (data: FormData) => {
-    updateShippingAddress(data);
+    console.log(data);
 
+    updateAddress(data);
     router.push('/checkout/summary');
   };
+
   return (
     <ShopLayout
       title={'Unbridled spirit | Address'}
@@ -143,15 +146,14 @@ const AddressPage = () => {
             <FormControl fullWidth>
               <TextField
                 select
+                defaultValue={countries[0].code}
                 variant="filled"
                 label="Country"
-                key={Cookies.get('country') || countries[0].code}
-                defaultValue={Cookies.get('country') || countries[0]}
                 {...register('country', {
                   required: 'Required field',
                 })}
                 error={!!errors.country}
-                helperText={errors.country?.message}
+                helperText={errors.lastName?.message}
               >
                 {countries.map((country) => (
                   <MenuItem key={country.code} value={country.code}>

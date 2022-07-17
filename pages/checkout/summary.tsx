@@ -12,7 +12,7 @@ import NextLink from 'next/link';
 import { useContext } from 'react';
 import { CartList, OrderSummary } from '../../components/cart';
 import { ShopLayout } from '../../components/layouts';
-import { CartContext } from '../../context/cart/CartContext';
+import { CartContext } from '../../context';
 import { countries } from '../../utils';
 
 const SummaryPage = () => {
@@ -22,16 +22,8 @@ const SummaryPage = () => {
     return <></>;
   }
 
-  const {
-    firstName,
-    lastName,
-    phone,
-    address,
-    address2 = '',
-    city,
-    country,
-    zip,
-  } = shippingAddress;
+  const { firstName, lastName, address, address2, city, country, zip, phone } =
+    shippingAddress;
 
   return (
     <ShopLayout
@@ -52,8 +44,8 @@ const SummaryPage = () => {
           <Card className="summary-card">
             <CardContent>
               <Typography variant="h2" component="h2">
-                Summary ({numberOfItems}
-                {numberOfItems > 1 ? ' products' : ' product'})
+                Summary ({numberOfItems}{' '}
+                {numberOfItems === 1 ? 'product' : 'products'})
               </Typography>
               <Divider sx={{ my: 1 }} />
 

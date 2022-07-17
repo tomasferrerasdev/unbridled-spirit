@@ -76,6 +76,26 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
   }, []);
 
   useEffect(() => {
+    if (Cookie.get('firstName')) {
+      const shippingAddress = {
+        firstName: Cookie.get('firstName') || '',
+        lastName: Cookie.get('lastName') || '',
+        address: Cookie.get('address') || '',
+        address2: Cookie.get('address2') || '',
+        zip: Cookie.get('zip') || '',
+        city: Cookie.get('city') || '',
+        country: Cookie.get('country') || '',
+        phone: Cookie.get('phone') || '',
+      };
+
+      dispatch({
+        type: '[Cart] - LoadAddress from cookies',
+        payload: shippingAddress,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     Cookie.set('cart', JSON.stringify(state.cart));
   }, [state.cart]);
 
@@ -135,11 +155,12 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
   const updateProductQuantity = (product: IcartProduct) => {
     dispatch({ type: '[Cart] - Change product quantity', payload: product });
   };
+
   const removeCartProduct = (product: IcartProduct) => {
     dispatch({ type: '[Cart] - Remove cart product', payload: product });
   };
 
-  const updateShippingAddress = (address: ShippingAddress) => {
+  const updateAddress = (address: ShippingAddress) => {
     Cookie.set('firstName', address.firstName);
     Cookie.set('lastName', address.lastName);
     Cookie.set('address', address.address);
@@ -148,7 +169,7 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
     Cookie.set('city', address.city);
     Cookie.set('country', address.country);
     Cookie.set('phone', address.phone);
-    dispatch({ type: '[Cart] - Update shippingAddress', payload: address });
+    dispatch({ type: '[Cart] - Update Address', payload: address });
   };
 
   return (
@@ -156,9 +177,9 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
       value={{
         ...state,
         addProductToCart,
-        updateProductQuantity,
         removeCartProduct,
-        updateShippingAddress,
+        updateProductQuantity,
+        updateAddress,
       }}
     >
       {children}
