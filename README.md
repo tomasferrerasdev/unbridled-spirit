@@ -7,7 +7,7 @@ This Guide / Doc is still in progress come again to check updates ✅✅✅
 - Docker
 - JWT (Json Web Tokens)
 
-# TODO features
+## TODO features
   - Implement payment methods
   - Handling and creations of order history
   - Admin panel
