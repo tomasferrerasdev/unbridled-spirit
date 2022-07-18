@@ -7,7 +7,7 @@ export const FullScreenLoading = () => {
       justifyContent="center"
       flexDirection="column"
       alignItems="center"
-      height="calc(100vh - 400px)"
+      height="calc(100vh - 300px)"
     >
       <CircularProgress thickness={2} sx={{ mt: 3 }} />
     </Box>

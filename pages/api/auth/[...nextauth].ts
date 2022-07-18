@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import GithubProvider from 'next-auth/providers/github';
-import { dbUsers } from '../../../database';
+import { usersDB } from '../../../database';
 
 export default NextAuth({
   providers: [
@@ -20,7 +20,8 @@ export default NextAuth({
         },
       },
       async authorize(credentials) {
-        return await dbUsers.checkUserEmailPassword(
+        console.log({ credentials });
+        return await usersDB.checkUserEmailPassword(
           credentials!.email,
           credentials!.password
         );
@@ -28,17 +29,21 @@ export default NextAuth({
     }),
 
     GithubProvider({
-      clientId: process.env.GITHUB_ID as any,
-      clientSecret: process.env.GITHUB_SECRET as any,
+      clientId: process.env.GITHUB_ID || '',
+      clientSecret: process.env.GITHUB_SECRET || '',
     }),
   ],
   callbacks: {
     async jwt({ token, account, user }) {
       if (account) {
         token.accessToken = account.access_token;
+
         switch (account.type) {
           case 'oauth':
-            //verify if userr exists in db
+            token.user = await usersDB.oAuthToDbUser(
+              user?.email || ' ',
+              user?.name || ' '
+            );
             break;
           case 'credentials':
             token.user = user;
