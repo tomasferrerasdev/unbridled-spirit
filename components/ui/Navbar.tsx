@@ -53,7 +53,13 @@ export const Navbar: FC = () => {
                   alignItems="center"
                   sx={{ display: { xs: 'none', sm: 'flex' } }}
                 >
-                  <Image priority src="/icons.svg" width={20} height={20} />
+                  <Image
+                    priority
+                    src="/icons.svg"
+                    width={20}
+                    height={20}
+                    alt="logo"
+                  />
                 </Box>
                 <Typography
                   variant="body1"
