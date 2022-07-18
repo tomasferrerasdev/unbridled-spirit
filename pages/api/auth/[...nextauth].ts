@@ -33,6 +33,18 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET || '',
     }),
   ],
+
+  pages: {
+    signIn: '/auth/login',
+    newUser: '/auth/register',
+  },
+
+  session: {
+    maxAge: 2592000, //30d
+    strategy: 'jwt',
+    updateAge: 86400, //every day
+  },
+
   callbacks: {
     async jwt({ token, account, user }) {
       if (account) {
