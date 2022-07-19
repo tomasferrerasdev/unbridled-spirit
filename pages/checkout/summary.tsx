@@ -8,22 +8,35 @@ import {
   Link,
   Typography,
 } from '@mui/material';
+import Cookies from 'js-cookie';
 import NextLink from 'next/link';
-import { useContext } from 'react';
+import { useRouter } from 'next/router';
+import { useContext, useEffect } from 'react';
 import { CartList, OrderSummary } from '../../components/cart';
 import { ShopLayout } from '../../components/layouts';
 import { CartContext } from '../../context';
 import { countries } from '../../utils';
 
 const SummaryPage = () => {
+  const router = useRouter();
   const { shippingAddress, numberOfItems } = useContext(CartContext);
 
-  if (!shippingAddress) {
-    return <></>;
-  }
+  useEffect(() => {
+    if (!Cookies.get('firstName')) {
+      router.push('/checkout/address');
+    }
+  }, [router]);
 
-  const { firstName, lastName, address, address2, city, country, zip, phone } =
-    shippingAddress;
+  const {
+    firstName,
+    lastName,
+    address,
+    address2 = '',
+    city,
+    country,
+    zip,
+    phone,
+  } = shippingAddress;
 
   return (
     <ShopLayout
