@@ -27,16 +27,12 @@ const SummaryPage = () => {
     }
   }, [router]);
 
-  const {
-    firstName,
-    lastName,
-    address,
-    address2 = '',
-    city,
-    country,
-    zip,
-    phone,
-  } = shippingAddress;
+  if (!shippingAddress) {
+    return <></>;
+  }
+
+  const { firstName, lastName, address, address2, city, country, zip, phone } =
+    shippingAddress;
 
   return (
     <ShopLayout
