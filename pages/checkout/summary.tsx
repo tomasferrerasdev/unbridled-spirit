@@ -90,7 +90,7 @@ const SummaryPage = () => {
               <OrderSummary />
 
               <Box sx={{ mt: 3 }}>
-                <Button color="secondary" className="circular-btn" fullWidth>
+                <Button color="secondary" fullWidth>
                   Confirm order
                 </Button>
               </Box>

@@ -190,12 +190,7 @@ const AddressPage = () => {
         </Grid>
 
         <Box sx={{ mt: 5 }} display="flex" justifyContent="left">
-          <Button
-            color="secondary"
-            className="circular-btn"
-            size="large"
-            type="submit"
-          >
+          <Button color="secondary" size="large" type="submit">
             Check order
           </Button>
         </Box>
