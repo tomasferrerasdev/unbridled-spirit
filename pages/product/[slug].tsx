@@ -20,7 +20,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
   const { addProductToCart } = useContext(CartContext);
 
   const [tempCartProduct, settempCartProduct] = useState<IcartProduct>({
-    _id: product._id,
+    _id: product._id as string,
     image: product.images[0],
     price: product.price,
     size: undefined,
