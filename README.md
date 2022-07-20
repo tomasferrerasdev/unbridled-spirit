@@ -6,6 +6,8 @@ This Guide / Doc is still in progress come again to check updates ✅✅✅
 - MongoDB
 - Docker
 - JWT (Json Web Tokens)
+- NextAuth
+- TypeScript
 
 ## TODO features
   - Implement payment methods
