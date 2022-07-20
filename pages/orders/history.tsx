@@ -37,10 +37,14 @@ const columns: GridColDef[] = [
 const rows = [
   { id: 1, paid: true, fullname: 'Tomas Ferreras' },
   { id: 2, paid: true, fullname: 'Puni' },
-  { id: 3, paid: false, fullname: 'POSCO' },
+  { id: 3, paid: true, fullname: 'POSCO' },
   { id: 4, paid: true, fullname: 'Luis Ferreras' },
-  { id: 5, paid: true, fullname: 'Pessolano Hugo' },
-  { id: 6, paid: false, fullname: 'Gusti Correa' },
+  { id: 5, paid: false, fullname: 'Pessolano Hugo' },
+  { id: 6, paid: true, fullname: 'Gusti Correa' },
+  { id: 7, paid: false, fullname: 'Delgado Ivan' },
+  { id: 8, paid: false, fullname: 'Gordo Quiroga' },
+  { id: 9, paid: true, fullname: 'Dekoshi' },
+  { id: 10, paid: false, fullname: 'Durak' },
 ];
 
 const HistoryPage = () => {
@@ -57,12 +61,12 @@ const HistoryPage = () => {
       </Typography>
 
       <Grid container>
-        <Grid item xs={12} sx={{ height: 650, width: '100%' }}>
+        <Grid item xs={12} sx={{ height: '33.125rem', width: '100%' }}>
           <DataGrid
             rows={rows}
             columns={columns}
-            pageSize={10}
-            rowsPerPageOptions={[10]}
+            pageSize={7}
+            rowsPerPageOptions={[7]}
           />
         </Grid>
       </Grid>
