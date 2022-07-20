@@ -1,6 +1,5 @@
 import { createContext } from 'react';
-import { IcartProduct } from '../../interfaces';
-import { ShippingAddress } from './CartProvider';
+import { IcartProduct, ShippingAddress } from '../../interfaces';
 
 interface ContextProps {
   isLoaded: boolean;
