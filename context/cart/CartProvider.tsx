@@ -1,7 +1,7 @@
 import { default as Cookie } from 'js-cookie';
 import { FC, PropsWithChildren, useEffect, useReducer } from 'react';
 import { unbridledSpiritAPI } from '../../api';
-import { IcartProduct, ShippingAddress } from '../../interfaces';
+import { IcartProduct, IOrder, ShippingAddress } from '../../interfaces';
 
 import { CartContext, CartReducer } from './';
 
@@ -164,8 +164,25 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
   };
 
   const createOrder = async () => {
+    if (!state.shippingAddress) {
+      throw new Error('Shipping address is missing');
+    }
+
+    const body: IOrder = {
+      orderItems: state.cart.map((p) => ({
+        ...p,
+        size: p.size!,
+      })),
+      shippingAddress: state.shippingAddress,
+      numberOfItems: state.numberOfItems,
+      subTotal: state.subTotal,
+      tax: state.tax,
+      total: state.total,
+      isPaid: false,
+    };
+
     try {
-      const { data } = await unbridledSpiritAPI.post('/orders');
+      const { data } = await unbridledSpiritAPI.post('/orders', body);
       console.log({ data });
     } catch (error) {
       console.log(error);
