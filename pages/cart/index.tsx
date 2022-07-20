@@ -38,10 +38,10 @@ const CartPage = () => {
         All products
       </Typography>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={7}>
+        <Grid item xs={12} sm={6} md={8}>
           <CartList editable />
         </Grid>
-        <Grid item xs={12} sm={5}>
+        <Grid xs={12} sm={6} md={4}>
           <Card className="summary-card">
             <CardContent>
               <Typography variant="h2" component="h2">

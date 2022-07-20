@@ -1,5 +1,6 @@
 import { default as Cookie } from 'js-cookie';
 import { FC, PropsWithChildren, useEffect, useReducer } from 'react';
+import { unbridledSpiritAPI } from '../../api';
 import { IcartProduct, ShippingAddress } from '../../interfaces';
 
 import { CartContext, CartReducer } from './';
@@ -162,6 +163,15 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
     dispatch({ type: '[Cart] - Update Address', payload: address });
   };
 
+  const createOrder = async () => {
+    try {
+      const { data } = await unbridledSpiritAPI.post('/orders');
+      console.log({ data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -170,6 +180,8 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
         removeCartProduct,
         updateProductQuantity,
         updateAddress,
+
+        createOrder,
       }}
     >
       {children}
