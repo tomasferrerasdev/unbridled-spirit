@@ -187,6 +187,7 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
 
     try {
       const { data } = await unbridledSpiritAPI.post<IOrder>('/orders', body);
+      dispatch({ type: '[Cart] - Order complete' });
 
       return {
         hasError: false,
@@ -196,12 +197,12 @@ export const CartProvider: FC<PropsWithChildren> = ({ children }) => {
       if (axios.isAxiosError(error)) {
         return {
           hasError: true,
-          message: 'error',
+          message: "The amount doesn't match with real value",
         };
       }
       return {
         hasError: true,
-        message: 'Uncontrolled error, contact administrator',
+        message: 'Uncontrolled error',
       };
     }
   };
