@@ -1,5 +1,8 @@
 import axios from 'axios';
 import type { NextApiRequest, NextApiResponse } from 'next';
+import { db } from '../../../database';
+import { IPaypal } from '../../../interfaces';
+import { Order } from '../../../models';
 
 type Data = {
   message: string;
@@ -35,7 +38,8 @@ const getPaypalBearerToken = async (): Promise<string | null> => {
       body,
       {
         headers: {
-          Authorization: `Basic ${base64Token}`,
+          // prettier-ignore
+          'Authorization': `Basic ${base64Token}`,
           'Content-Type': 'application/x-www-form-urlencoded',
         },
       }
@@ -54,11 +58,51 @@ const getPaypalBearerToken = async (): Promise<string | null> => {
 };
 
 const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+  //TODO: validate user session
+  //TODO: validate MongoID
+
   const paypalBearerToken = await getPaypalBearerToken();
 
   if (!paypalBearerToken) {
     res.status(400).json({ message: 'SHOTO' });
   }
 
-  res.status(200).json({ message: paypalBearerToken || '' });
+  const { transactionId = '', orderId = '' } = req.body;
+
+  const { data } = await axios.get<IPaypal.PaypalOrderStatusResponse>(
+    `${process.env.PAYPAL_ORDERS_URL}/${transactionId}`,
+    {
+      headers: {
+        // prettier-ignore
+        'Authorization': `Bearer ${paypalBearerToken}`,
+      },
+    }
+  );
+
+  if (data.status !== 'COMPLETED') {
+    return res.status(401).json({ message: 'Unrecognized order' });
+  }
+
+  await db.connect();
+  const dbOrder = await Order.findById(orderId);
+
+  if (!dbOrder) {
+    await db.disconnect();
+    return res.status(400).json({ message: 'Nonexistent order' });
+  }
+
+  if (dbOrder.total !== Number(data.purchase_units[0].amount.value)) {
+    await db.disconnect();
+    return res
+      .status(400)
+      .json({ message: "Paypal amounts does not match with order's one" });
+  }
+
+  dbOrder.transactionId = transactionId;
+  dbOrder.isPaid = true;
+  dbOrder.save();
+
+  await db.disconnect();
+
+  res.status(200).json({ message: 'Paid order' });
 };
