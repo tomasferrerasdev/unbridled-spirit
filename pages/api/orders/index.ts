@@ -57,6 +57,7 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
     const userID = session.user._id;
     const newOrder = new Order({ ...req.body, isPaid: false, user: userID });
+    newOrder.total = Math.round(newOrder.total * 100) / 100;
 
     await newOrder.save();
     res.status(201).json(newOrder);

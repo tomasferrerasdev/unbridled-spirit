@@ -37,11 +37,13 @@ const CartPage = () => {
       <Typography variant="h2" sx={{ mb: 2 }}>
         All products
       </Typography>
+
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={8}>
           <CartList editable />
         </Grid>
-        <Grid xs={12} sm={6} md={4}>
+
+        <Grid item xs={12} sm={6} md={4}>
           <Card className="summary-card">
             <CardContent>
               <Typography variant="h2" component="h2">
