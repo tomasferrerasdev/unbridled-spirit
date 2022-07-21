@@ -8,6 +8,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { CartList, OrderSummary } from '../../components/cart';
@@ -27,30 +28,40 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       title={'Unbridled spirit | order summary'}
       pageDescription={'Order summary'}
     >
-      <Typography
-        variant="h1"
-        component="h1"
-        sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        sx={{
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'flex-start', sm: 'center' },
+          mb: { xs: 3, sm: 2, md: 1 },
+        }}
       >
-        Order No. {order._id}
-      </Typography>
-      {order.isPaid ? (
-        <Chip
-          sx={{ my: 2 }}
-          label="The order is already paid"
-          color="success"
-          variant="outlined"
-          icon={<CreditCardOutlined />}
-        />
-      ) : (
-        <Chip
-          sx={{ my: 2 }}
-          label="Pending payment"
-          color="error"
-          variant="outlined"
-          icon={<CreditCardOffOutlined />}
-        />
-      )}
+        <Typography
+          variant="h1"
+          component="h1"
+          sx={{ fontSize: { xs: '1.5rem', md: '2rem' } }}
+        >
+          Order No. {order._id}
+        </Typography>
+        {order.isPaid ? (
+          <Chip
+            sx={{ my: 2 }}
+            label="The order is already paid"
+            color="success"
+            variant="outlined"
+            icon={<CreditCardOutlined />}
+          />
+        ) : (
+          <Chip
+            sx={{ my: 2 }}
+            label="Pending payment"
+            color="error"
+            variant="outlined"
+            icon={<CreditCardOffOutlined />}
+          />
+        )}
+      </Box>
 
       <Grid container spacing={3} className="fadeIn">
         <Grid item xs={12} md={7}>
@@ -100,12 +111,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                 }}
               />
 
-              <Box
-                sx={{ mt: 3 }}
-                display="flex"
-                justifyContent="space-between"
-                alignItems="center"
-              >
+              <Box sx={{ mt: 3 }} display="flex" flexDirection="column">
                 {order.isPaid ? (
                   <Chip
                     sx={{ my: 2 }}
@@ -115,7 +121,26 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                     icon={<CreditCardOutlined />}
                   />
                 ) : (
-                  <h1>Pay</h1>
+                  <PayPalButtons
+                    createOrder={(data, actions) => {
+                      return actions.order.create({
+                        purchase_units: [
+                          {
+                            amount: {
+                              value: '2000.19',
+                            },
+                          },
+                        ],
+                      });
+                    }}
+                    onApprove={(data, actions) => {
+                      return actions.order!.capture().then((details) => {
+                        console.log({ details });
+                        const name = details.payer.name?.given_name;
+                        alert(`Transaction completed by ${name}`);
+                      });
+                    }}
+                  />
                 )}
               </Box>
             </CardContent>
