@@ -40,7 +40,7 @@ const bottomFooterItems = [
 
 export const Footer = () => {
   return (
-    <Box mt={20}>
+    <Box sx={{ mt: { xs: 10, sm: 15, md: 20 } }}>
       <Grid container spacing={2} display="flex" justifyContent="center" mb={5}>
         <Grid item xs={12} sm={4} md={3} position="relative">
           <Typography component="h1" variant="h1" fontSize={24} mb={2}>
