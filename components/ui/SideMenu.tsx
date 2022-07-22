@@ -1,7 +1,10 @@
 import {
   AccountCircleOutlined,
+  AdminPanelSettings,
   ArrowForwardOutlined,
+  CategoryOutlined,
   ConfirmationNumberOutlined,
+  DashboardOutlined,
   LoginOutlined,
   SearchOutlined,
   VpnKeyOutlined,
@@ -22,7 +25,6 @@ import {
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { AuthContext, UiContext } from '../../context';
-import { AdminSideMenu } from './AdminSideMenu';
 
 const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 
@@ -132,7 +134,38 @@ export const SideMenu = () => {
           ))}
 
           <Divider />
-          {user?.role === 'admin' && <AdminSideMenu />}
+          {user?.role === 'admin' && (
+            <>
+              <ListSubheader>Admin Panel</ListSubheader>
+              <ListItem button onClick={() => navigateTo('/admin')}>
+                <ListItemIcon>
+                  <DashboardOutlined />
+                </ListItemIcon>
+                <ListItemText primary={'Dashboard'} />
+              </ListItem>
+
+              <ListItem button>
+                <ListItemIcon>
+                  <CategoryOutlined />
+                </ListItemIcon>
+                <ListItemText primary={'Products'} />
+              </ListItem>
+
+              <ListItem button>
+                <ListItemIcon>
+                  <ConfirmationNumberOutlined />
+                </ListItemIcon>
+                <ListItemText primary={'Orders'} />
+              </ListItem>
+
+              <ListItem button>
+                <ListItemIcon>
+                  <AdminPanelSettings />
+                </ListItemIcon>
+                <ListItemText primary={'Users'} />
+              </ListItem>
+            </>
+          )}
         </List>
       </Box>
     </Drawer>
