@@ -6,13 +6,15 @@ This Guide / Doc is still in progress come again to check updates ✅✅✅
 - MongoDB
 - Docker
 - JWT (Json Web Tokens)
+- Github signin
 - NextAuth
 - TypeScript
+- Paypal payment
 
 ## TODO features
-  - Implement payment methods
-  - Handling and creations of order history
-  - Admin panel
+  - Implement payment methods ✅
+  - Handling and creations of order history ✅
+  - Admin panel ✅
   - Product maintenance
 
 # Initial project config
