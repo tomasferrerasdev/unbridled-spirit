@@ -8,7 +8,7 @@ This Guide / Doc is still in progress come again to check updates ✅✅✅
 
 - paypal payment: unbridled@google.com
 - email: unbridled
-
+----------------------------
 - NextJS
 - MUI
 - MongoDB
