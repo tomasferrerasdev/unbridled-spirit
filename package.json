@@ -9,7 +9,7 @@
   "engines": {
     "node": ">=14.0.0",
     "yarn": ">=1.22.0",
-    "npm": "please-use-yarn"
+    "npm": "6.12.1"
   },
   "scripts": {
     "dev": "cross-env NODE_OPTIONS='--inspect' next dev",
