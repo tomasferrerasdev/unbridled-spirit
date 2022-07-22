@@ -9,7 +9,9 @@ import {
   MoneyOffOutlined,
   ProductionQuantityLimitsOutlined,
 } from '@mui/icons-material';
-import { Grid, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { SummaryTile } from '../../components/admin';
 import { AdminLayout } from '../../components/layouts/AdminLayout';
@@ -22,6 +24,16 @@ const DashboardPage = () => {
       refreshInterval: 30 * 1000, //30sec
     }
   );
+
+  const [refreshIn, setRefreshIn] = useState(30);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setRefreshIn((refreshIn) => (refreshIn > 0 ? refreshIn - 1 : 30));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, []);
 
   if (!error && !data) {
     return <></>;
@@ -109,13 +121,26 @@ const DashboardPage = () => {
           }
         />
         <SummaryTile
-          title={'8'}
+          title={refreshIn}
           subtitle={'Update in:'}
           icon={
             <AccessTimeOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
           }
         />
       </Grid>
+      <Box
+        height={300}
+        position="relative"
+        mt={4}
+        sx={{ display: { xs: 'none', sm: 'block' } }}
+      >
+        <Image
+          src="/images/hero.webp"
+          objectFit="cover"
+          layout="fill"
+          style={{ borderRadius: '8px' }}
+        />
+      </Box>
     </AdminLayout>
   );
 };
