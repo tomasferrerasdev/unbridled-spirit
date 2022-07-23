@@ -2,13 +2,7 @@
 This Guide / Doc is still in progress come again to check updates ✅✅✅
 
 ## DEMO ACCOUNTS
-- unbridled spirit:
-- email: unbridled@google.com
-- password: unbridled@google.com
 
-- paypal payment: unbridled@google.com
-- email: unbridled
-----------------------------
 - NextJS
 - MUI
 - MongoDB
