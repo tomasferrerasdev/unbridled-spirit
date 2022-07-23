@@ -30,7 +30,13 @@ export const AdminLayout: FC<Props> = ({ children, title, subTitle, icon }) => {
           }}
         >
           <Box display="flex" flexDirection="column">
-            <Typography variant="h1" component="h1">
+            <Typography
+              variant="h1"
+              component="h1"
+              display="flex"
+              gap={1}
+              alignItems="center"
+            >
               {icon}
               {title}
             </Typography>
