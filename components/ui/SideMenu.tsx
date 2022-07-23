@@ -137,7 +137,7 @@ export const SideMenu = () => {
           {user?.role === 'admin' && (
             <>
               <ListSubheader>Admin Panel</ListSubheader>
-              <ListItem button onClick={() => navigateTo('/admin')}>
+              <ListItem button onClick={() => navigateTo('/admin/')}>
                 <ListItemIcon>
                   <DashboardOutlined />
                 </ListItemIcon>
@@ -158,7 +158,7 @@ export const SideMenu = () => {
                 <ListItemText primary={'Orders'} />
               </ListItem>
 
-              <ListItem button>
+              <ListItem button onClick={() => navigateTo('/admin/users')}>
                 <ListItemIcon>
                   <AdminPanelSettings />
                 </ListItemIcon>
