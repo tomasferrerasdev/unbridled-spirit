@@ -2,8 +2,8 @@ import { ConfirmationNumberOutlined } from '@mui/icons-material';
 import { Chip, Grid } from '@mui/material';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import useSWR from 'swr';
-import { AdminLayout } from '../../components/layouts';
-import { IOrder, IUser } from '../../interfaces';
+import { AdminLayout } from '../../../components/layouts';
+import { IOrder, IUser } from '../../../interfaces';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'Order ID', width: 250 },
@@ -31,7 +31,7 @@ const columns: GridColDef[] = [
           href={`/admin/orders/${row.id}`}
           target="_blank"
           rel="noreferrer"
-          style={{ textDecoration: 'none' }}
+          style={{ textDecoration: 'none', color: '#212121' }}
         >
           Check order
         </a>
