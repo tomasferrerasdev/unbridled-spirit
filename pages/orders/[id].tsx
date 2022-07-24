@@ -57,7 +57,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     } catch (error) {
       setIsPaying(false);
       console.log(error);
-      alert(error);
+      alert('chota mira la consola pibe');
     }
   };
 
@@ -67,11 +67,14 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       pageDescription={'Order summary'}
     >
       <Box
-        mb={2}
+        mb={4}
         display="flex"
         justifyContent="space-between"
         gap={2}
-        alignItems="center"
+        sx={{
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'flex-start', sm: 'center' },
+        }}
       >
         <Typography
           variant="h1"

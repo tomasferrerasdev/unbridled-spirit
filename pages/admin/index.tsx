@@ -9,8 +9,7 @@ import {
   MoneyOffOutlined,
   ProductionQuantityLimitsOutlined,
 } from '@mui/icons-material';
-import { Box, Grid, Typography } from '@mui/material';
-import Image from 'next/image';
+import { Grid, Typography } from '@mui/material';
 import { useEffect, useState } from 'react';
 import useSWR from 'swr';
 import { SummaryTile } from '../../components/admin';
@@ -60,87 +59,81 @@ const DashboardPage = () => {
       subTitle="General stats"
       icon={<DashboardOutlined />}
     >
-      <Grid container spacing={2} mt={2}>
-        <SummaryTile
-          title={numberOfOrders}
-          subtitle={'Total orders'}
-          icon={
-            <BorderColorOutlined
-              color="secondary"
-              sx={{ fontSize: '2.5rem' }}
-            />
-          }
-        />
-        <SummaryTile
-          title={paidOrders}
-          subtitle={'Payed orders'}
-          icon={
-            <AttachMoneyOutlined
-              color="secondary"
-              sx={{ fontSize: '2.5rem' }}
-            />
-          }
-        />
-        <SummaryTile
-          title={unpaidOrders}
-          subtitle={'Pending orders'}
-          icon={
-            <MoneyOffOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
-          }
-        />
-        <SummaryTile
-          title={numberOfClients}
-          subtitle={'Clients'}
-          icon={<GroupOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />}
-        />
-        <SummaryTile
-          title={numberOfProducts}
-          subtitle={'Products'}
-          icon={
-            <LiquorOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
-          }
-        />
-        <SummaryTile
-          title={noStockProducts}
-          subtitle={'No stock products'}
-          icon={
-            <CancelPresentationOutlined
-              color="secondary"
-              sx={{ fontSize: '2.5rem' }}
-            />
-          }
-        />
-        <SummaryTile
-          title={lowStockProducts}
-          subtitle={'Low stock'}
-          icon={
-            <ProductionQuantityLimitsOutlined
-              color="secondary"
-              sx={{ fontSize: '2.5rem' }}
-            />
-          }
-        />
-        <SummaryTile
-          title={refreshIn}
-          subtitle={'Update in:'}
-          icon={
-            <AccessTimeOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
-          }
-        />
-      </Grid>
-      <Box
-        height={300}
-        position="relative"
-        mt={4}
-        sx={{ display: { xs: 'none', sm: 'block' } }}
-      >
-        <Image
-          src="/images/hero.webp"
-          objectFit="cover"
-          layout="fill"
-          style={{ borderRadius: '8px' }}
-        />
-      </Box>
+      <>
+        <Grid container spacing={2} mt={2}>
+          <SummaryTile
+            title={numberOfOrders}
+            subtitle={'Total orders'}
+            icon={
+              <BorderColorOutlined
+                color="secondary"
+                sx={{ fontSize: '2.5rem' }}
+              />
+            }
+          />
+          <SummaryTile
+            title={paidOrders}
+            subtitle={'Payed orders'}
+            icon={
+              <AttachMoneyOutlined
+                color="secondary"
+                sx={{ fontSize: '2.5rem' }}
+              />
+            }
+          />
+          <SummaryTile
+            title={unpaidOrders}
+            subtitle={'Pending orders'}
+            icon={
+              <MoneyOffOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
+            }
+          />
+          <SummaryTile
+            title={numberOfClients}
+            subtitle={'Clients'}
+            icon={
+              <GroupOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
+            }
+          />
+          <SummaryTile
+            title={numberOfProducts}
+            subtitle={'Products'}
+            icon={
+              <LiquorOutlined color="secondary" sx={{ fontSize: '2.5rem' }} />
+            }
+          />
+          <SummaryTile
+            title={noStockProducts}
+            subtitle={'No stock products'}
+            icon={
+              <CancelPresentationOutlined
+                color="secondary"
+                sx={{ fontSize: '2.5rem' }}
+              />
+            }
+          />
+          <SummaryTile
+            title={lowStockProducts}
+            subtitle={'Low stock'}
+            icon={
+              <ProductionQuantityLimitsOutlined
+                color="secondary"
+                sx={{ fontSize: '2.5rem' }}
+              />
+            }
+          />
+          <SummaryTile
+            title={refreshIn}
+            subtitle={'Update in:'}
+            icon={
+              <AccessTimeOutlined
+                color="secondary"
+                sx={{ fontSize: '2.5rem' }}
+              />
+            }
+          />
+        </Grid>
+      </>
     </AdminLayout>
   );
 };
