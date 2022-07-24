@@ -16,6 +16,7 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  FormHelperText,
   FormLabel,
   Grid,
   Radio,
@@ -23,7 +24,8 @@ import {
   TextField,
 } from '@mui/material';
 import { GetServerSideProps } from 'next';
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
+import { Controller, useForm } from 'react-hook-form';
 import { AdminLayout } from '../../../components/layouts';
 import { productsDB } from '../../../database';
 import { Iproduct } from '../../../interfaces';
@@ -31,12 +33,77 @@ import { Iproduct } from '../../../interfaces';
 const validTypes = ['kentucky', 'tennessee', 'straight', 'single-barrel'];
 const validSizes = ['1L', '750ml', '375ml', '200ml'];
 
+interface FormData {
+  _id?: String;
+  description: string;
+  images: string[];
+  inStock: number;
+  price: number;
+  sizes: string[];
+  slug: string;
+  tags: string[];
+  title: string;
+  type: string;
+  quantity: number;
+  ABV: string;
+}
+
 interface Props {
   product: Iproduct;
 }
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
-  const onDeleteTag = (tag: string) => {};
+  const [newTagValue, setNewTagValue] = useState('');
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    getValues,
+    setValue,
+    watch,
+    control,
+  } = useForm({
+    defaultValues: product,
+  });
+
+  useEffect(() => {
+    const subscription = watch((value, { name, type }) => {
+      if (name === 'title') {
+        const newSlug =
+          value.title
+            ?.trim()
+            .replaceAll(' ', '-')
+            .replaceAll("'", '')
+            .toLowerCase() || '';
+
+        setValue('slug', newSlug);
+      }
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch, setValue]);
+
+  const onNewTag = () => {
+    const newTag = newTagValue.trim().toLowerCase();
+    setNewTagValue('');
+    const currentTags = getValues('tags');
+
+    if (currentTags.includes(newTag)) {
+      return;
+    }
+
+    currentTags.push(newTag);
+  };
+
+  const onDeleteTag = (tag: string) => {
+    const updatedTags = getValues('tags').filter((t) => t !== tag);
+    setValue('tags', updatedTags, { shouldValidate: true });
+  };
+
+  const onSubmit = (form: FormData) => {
+    console.log({ form });
+  };
 
   return (
     <AdminLayout
@@ -44,7 +111,7 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
       subTitle={`Editing: ${product.title}`}
       icon={<DriveFileRenameOutline />}
     >
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <Box display="flex" justifyContent="end" sx={{ mb: 1 }}>
           <Button
             color="secondary"
@@ -64,12 +131,12 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               variant="filled"
               fullWidth
               sx={{ mb: 1 }}
-              // { ...register('name', {
-              //     required: 'Este campo es requerido',
-              //     minLength: { value: 2, message: 'Mínimo 2 caracteres' }
-              // })}
-              // error={ !!errors.name }
-              // helperText={ errors.name?.message }
+              {...register('title', {
+                required: 'Required field',
+                minLength: { value: 2, message: 'At least 2 characters' },
+              })}
+              error={!!errors.title}
+              helperText={errors.title?.message}
             />
 
             <TextField
@@ -78,6 +145,11 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               fullWidth
               multiline
               sx={{ mb: 1 }}
+              {...register('description', {
+                required: 'Required field',
+              })}
+              error={!!errors.description}
+              helperText={errors.description?.message}
             />
 
             <TextField
@@ -86,6 +158,12 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               variant="filled"
               fullWidth
               sx={{ mb: 1 }}
+              {...register('inStock', {
+                required: 'Required field',
+                min: { value: 0, message: 'Minimum allowed is 0' },
+              })}
+              error={!!errors.inStock}
+              helperText={errors.inStock?.message}
             />
 
             <TextField
@@ -94,38 +172,72 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               variant="filled"
               fullWidth
               sx={{ mb: 1 }}
+              {...register('price', {
+                required: 'Required field',
+                min: { value: 1, message: 'Minimum allowed is 1' },
+              })}
+              error={!!errors.price}
+              helperText={errors.price?.message}
             />
 
             <Divider sx={{ my: 1 }} />
 
             <FormControl sx={{ mb: 1 }}>
-              <FormLabel>Type</FormLabel>
-              <RadioGroup
-                row
-                // value={ status }
-                // onChange={ onStatusChanged }
-              >
-                {validTypes.map((option) => (
-                  <FormControlLabel
-                    key={option}
-                    value={option}
-                    control={<Radio color="secondary" />}
-                    label={capitalize(option)}
-                  />
-                ))}
-              </RadioGroup>
+              <Controller
+                name="type"
+                control={control}
+                defaultValue={undefined}
+                render={({ field }) => (
+                  <FormControl>
+                    <FormLabel>Type</FormLabel>
+                    <RadioGroup row {...field}>
+                      {validTypes.map((option) => (
+                        <FormControlLabel
+                          key={option}
+                          value={option}
+                          control={<Radio color="secondary" />}
+                          label={capitalize(option)}
+                        />
+                      ))}
+                    </RadioGroup>
+                  </FormControl>
+                )}
+              />
             </FormControl>
 
-            <FormGroup>
-              <FormLabel>Sizes</FormLabel>
-              {validSizes.map((size) => (
-                <FormControlLabel
-                  key={size}
-                  control={<Checkbox />}
-                  label={size}
-                />
-              ))}
-            </FormGroup>
+            <Controller
+              name="sizes"
+              control={control}
+              render={({ field }) => (
+                <FormControl fullWidth margin="dense" error={!!errors.sizes}>
+                  <FormLabel>Sizes</FormLabel>
+                  <FormGroup>
+                    {validSizes.map((size) => (
+                      <FormControlLabel
+                        key={size}
+                        label={size}
+                        control={
+                          <Checkbox
+                            value={size}
+                            checked={field.value.some((val) => val === size)}
+                            onChange={({ target: { value } }, checked) => {
+                              checked
+                                ? field.onChange([...field.value, value])
+                                : field.onChange(
+                                    field.value.filter((val) => val !== value)
+                                  );
+                            }}
+                          />
+                        }
+                      />
+                    ))}
+                  </FormGroup>
+                  <FormHelperText>
+                    {capitalize(`${(errors.sizes as any)?.message || ''}`)}
+                  </FormHelperText>
+                </FormControl>
+              )}
+            />
           </Grid>
 
           <Grid item xs={12} sm={6}>
@@ -134,6 +246,15 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               variant="filled"
               fullWidth
               sx={{ mb: 1 }}
+              {...register('slug', {
+                required: 'Required field',
+                validate: (val) =>
+                  val.trim().includes(' ')
+                    ? 'spaces are not allowed'
+                    : undefined,
+              })}
+              error={!!errors.slug}
+              helperText={errors.slug?.message}
             />
 
             <TextField
@@ -142,6 +263,11 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               fullWidth
               sx={{ mb: 1 }}
               helperText="Press [spacebar] to add"
+              value={newTagValue}
+              onChange={({ target }) => setNewTagValue(target.value)}
+              onKeyUp={({ code }) =>
+                code === 'Space' ? onNewTag() : undefined
+              }
             />
 
             <Box
@@ -154,7 +280,7 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               }}
               component="ul"
             >
-              {product.tags.map((tag) => {
+              {getValues('tags').map((tag) => {
                 return (
                   <Chip
                     key={tag}

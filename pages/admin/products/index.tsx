@@ -1,4 +1,4 @@
-import { CategoryOutlined } from '@mui/icons-material';
+import { LiquorOutlined } from '@mui/icons-material';
 import { CardMedia, Grid, Link } from '@mui/material';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import NextLink from 'next/link';
@@ -64,7 +64,7 @@ const ProductsPage = () => {
     <AdminLayout
       title={`Products (${data?.length})`}
       subTitle={'Products maintenance'}
-      icon={<CategoryOutlined />}
+      icon={<LiquorOutlined />}
     >
       <Grid container className="fadeIn">
         <Grid item xs={12} sx={{ height: '33.125rem', width: '100%' }}>
