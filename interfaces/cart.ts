@@ -7,7 +7,7 @@ export interface IcartProduct {
   size?: ISize;
   slug: string;
   title: string;
-  type: 'kentucky' | 'tennessee' | 'straight' | 'single-barrel';
+  type: 'kentucky' | 'tennessee' | 'straight' | 'single-barrel' | 'accessories';
   ABV: string;
   quantity: number;
 }
