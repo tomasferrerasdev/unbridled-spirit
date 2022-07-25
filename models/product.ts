@@ -22,7 +22,13 @@ const productSchema = new Schema(
     type: {
       type: String,
       enum: {
-        values: ['kentucky', 'tennessee', 'straight', 'single-barrel'],
+        values: [
+          'kentucky',
+          'tennessee',
+          'straight',
+          'single-barrel',
+          'accessories',
+        ],
         message: '${VALUE} is not an allowed type',
       },
       default: 'tennessee',

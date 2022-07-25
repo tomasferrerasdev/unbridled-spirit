@@ -1,8 +1,4 @@
-import {
-  DriveFileRenameOutline,
-  SaveOutlined,
-  UploadOutlined,
-} from '@mui/icons-material';
+import { DriveFileRenameOutline, SaveOutlined } from '@mui/icons-material';
 import {
   Box,
   Button,
@@ -25,7 +21,7 @@ import {
 } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { FC, useEffect, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
@@ -33,7 +29,13 @@ import { productsDB } from '../../../database';
 import { Iproduct } from '../../../interfaces';
 import { Product } from '../../../models';
 
-const validTypes = ['kentucky', 'tennessee', 'straight', 'single-barrel'];
+const validTypes = [
+  'kentucky',
+  'tennessee',
+  'straight',
+  'single-barrel',
+  'accessories',
+];
 const validSizes = ['1L', '750ml', '375ml', '200ml'];
 
 interface FormData {
@@ -57,6 +59,8 @@ interface Props {
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
   const router = useRouter();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const [newTagValue, setNewTagValue] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
@@ -104,6 +108,29 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
   const onDeleteTag = (tag: string) => {
     const updatedTags = getValues('tags').filter((t) => t !== tag);
     setValue('tags', updatedTags, { shouldValidate: true });
+  };
+
+  const onFilesSelected = async ({ target }: ChangeEvent<HTMLInputElement>) => {
+    if (!target.files || target.files.length === 0) {
+      return;
+    }
+
+    try {
+      for (const file of target.files) {
+        const formData = new FormData();
+
+        formData.append('file', file);
+        const { data } = await unbridledSpiritAPI.post<{ message: string }>(
+          '/admin/upload',
+          formData
+        );
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+
+    console.log(target.files);
   };
 
   const onSubmit = async (form: FormData) => {
@@ -335,13 +362,16 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
 
             <Box display="flex" flexDirection="column">
               <FormLabel sx={{ mb: 1 }}>Image</FormLabel>
-              <Button
-                color="secondary"
-                fullWidth
-                startIcon={<UploadOutlined />}
-                sx={{ mb: 3 }}
-              >
-                Load image
+
+              <Button variant="contained" component="label" sx={{ mb: 1 }}>
+                Upload image
+                <input
+                  hidden
+                  accept="image/png, image/gif, image/jpeg, image/webp"
+                  multiple
+                  type="file"
+                  onChange={onFilesSelected}
+                />
               </Button>
 
               {/*
@@ -390,7 +420,7 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (slug === 'new') {
     const tempProduct = JSON.parse(JSON.stringify(new Product()));
     delete tempProduct._id;
-    tempProduct.images = ['Yellow-Rose-Outlaw-Bourbon-Texas-Whiskey-1.webp'];
+    tempProduct.images = ['Tasting-Book-.webp'];
     product = tempProduct;
   } else {
     product = await productsDB.getProductBySlug(slug.toString());
