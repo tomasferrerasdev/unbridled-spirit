@@ -1,6 +1,7 @@
 import { Box } from '@mui/material';
 import Head from 'next/head';
 import { FC } from 'react';
+import { Drink } from '../ui';
 
 interface Props {
   title: string;
@@ -15,6 +16,7 @@ export const AuthLayout: FC<Props> = ({ title, children }) => {
       </Head>
 
       <main>
+        <Drink />
         <Box
           display="flex"
           justifyContent="center"

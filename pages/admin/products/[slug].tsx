@@ -26,6 +26,7 @@ import {
 import { GetServerSideProps } from 'next';
 import { FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
 import { productsDB } from '../../../database';
 import { Iproduct } from '../../../interfaces';
@@ -54,6 +55,7 @@ interface Props {
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
   const [newTagValue, setNewTagValue] = useState('');
+  const [isSaving, setIsSaving] = useState(false);
 
   const {
     register,
@@ -101,8 +103,28 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
     setValue('tags', updatedTags, { shouldValidate: true });
   };
 
-  const onSubmit = (form: FormData) => {
+  const onSubmit = async (form: FormData) => {
     console.log({ form });
+    if (form.images.length < 1) return alert('One image at least');
+    setIsSaving(true);
+
+    try {
+      const { data } = await unbridledSpiritAPI({
+        url: 'admin/products',
+        method: 'PUT', //if _id update if not create
+        data: form,
+      });
+
+      console.log({ data });
+      if (!form._id) {
+        //TODO: reload browser
+      } else {
+        setIsSaving(false);
+      }
+    } catch (error) {
+      console.log(error);
+      setIsSaving(false);
+    }
   };
 
   return (
@@ -118,8 +140,9 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
             startIcon={<SaveOutlined />}
             sx={{ width: '150px' }}
             type="submit"
+            disabled={isSaving}
           >
-            Guardar
+            Save
           </Button>
         </Box>
 
