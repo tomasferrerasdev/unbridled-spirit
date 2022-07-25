@@ -1,5 +1,5 @@
-import { LiquorOutlined } from '@mui/icons-material';
-import { CardMedia, Grid, Link } from '@mui/material';
+import { AddOutlined, LiquorOutlined } from '@mui/icons-material';
+import { Box, Button, CardMedia, Grid, Link } from '@mui/material';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import NextLink from 'next/link';
 import useSWR from 'swr';
@@ -66,6 +66,16 @@ const ProductsPage = () => {
       subTitle={'Products maintenance'}
       icon={<LiquorOutlined />}
     >
+      <Box display="flex" justifyContent="end" sx={{ mb: 2 }}>
+        <Button
+          startIcon={<AddOutlined />}
+          color="secondary"
+          href="/admin/products/new"
+        >
+          Add new product
+        </Button>
+      </Box>
+
       <Grid container className="fadeIn">
         <Grid item xs={12} sx={{ height: '33.125rem', width: '100%' }}>
           <DataGrid

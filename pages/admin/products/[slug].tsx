@@ -24,12 +24,14 @@ import {
   TextField,
 } from '@mui/material';
 import { GetServerSideProps } from 'next';
+import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
 import { productsDB } from '../../../database';
 import { Iproduct } from '../../../interfaces';
+import { Product } from '../../../models';
 
 const validTypes = ['kentucky', 'tennessee', 'straight', 'single-barrel'];
 const validSizes = ['1L', '750ml', '375ml', '200ml'];
@@ -54,6 +56,7 @@ interface Props {
 }
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
+  const router = useRouter();
   const [newTagValue, setNewTagValue] = useState('');
   const [isSaving, setIsSaving] = useState(false);
 
@@ -111,13 +114,13 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
     try {
       const { data } = await unbridledSpiritAPI({
         url: 'admin/products',
-        method: 'PUT', //if _id update if not create
+        method: form._id ? 'PUT' : 'POST', //if _id update if not create
         data: form,
       });
 
       console.log({ data });
       if (!form._id) {
-        //TODO: reload browser
+        router.replace(`/admin/products/${form.slug}`);
       } else {
         setIsSaving(false);
       }
@@ -311,11 +314,22 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
                     onDelete={() => onDeleteTag(tag)}
                     color="primary"
                     size="small"
-                    sx={{ ml: 1, mt: 1 }}
+                    sx={{ mb: 1, mt: 1, mr: 1 }}
                   />
                 );
               })}
             </Box>
+            <TextField
+              label="ABV"
+              variant="filled"
+              fullWidth
+              sx={{ mb: 1 }}
+              {...register('ABV', {
+                required: 'Required field',
+              })}
+              error={!!errors.ABV}
+              helperText={errors.ABV?.message}
+            />
 
             <Divider sx={{ my: 2 }} />
 
@@ -372,7 +386,15 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const { slug = '' } = query;
 
-  const product = await productsDB.getProductBySlug(slug.toString());
+  let product: Iproduct | null;
+  if (slug === 'new') {
+    const tempProduct = JSON.parse(JSON.stringify(new Product()));
+    delete tempProduct._id;
+    tempProduct.images = ['Yellow-Rose-Outlaw-Bourbon-Texas-Whiskey-1.webp'];
+    product = tempProduct;
+  } else {
+    product = await productsDB.getProductBySlug(slug.toString());
+  }
 
   if (!product) {
     return {
