@@ -124,17 +124,27 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
           '/admin/upload',
           formData
         );
-        console.log(data);
+
+        setValue('images', [...getValues('images'), data.message], {
+          shouldValidate: true,
+        });
       }
     } catch (error) {
       console.log(error);
     }
+  };
 
-    console.log(target.files);
+  const onDeleteImage = (image: string) => {
+    setValue(
+      'images',
+      getValues('images').filter((img) => img !== image),
+      {
+        shouldValidate: true,
+      }
+    );
   };
 
   const onSubmit = async (form: FormData) => {
-    console.log({ form });
     if (form.images.length < 1) return alert('One image at least');
     setIsSaving(true);
 
@@ -145,7 +155,6 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
         data: form,
       });
 
-      console.log({ data });
       if (!form._id) {
         router.replace(`/admin/products/${form.slug}`);
       } else {
@@ -384,17 +393,23 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
               */}
 
               <Grid container spacing={2}>
-                {product.images.map((img) => (
+                {getValues('images').map((img) => (
                   <Grid item xs={4} sm={3} key={img}>
                     <Card>
                       <CardMedia
                         component="img"
                         className="fadeIn"
-                        image={`/product/${img}`}
+                        image={img}
                         alt={img}
                       />
                       <CardActions sx={{ p: 0 }}>
-                        <Button fullWidth color="error" sx={{ mt: '.5rem' }}>
+                        <Button
+                          fullWidth
+                          color="error"
+                          sx={{ mt: '.5rem' }}
+                          variant="outlined"
+                          onClick={() => onDeleteImage(img)}
+                        >
                           Delete
                         </Button>
                       </CardActions>

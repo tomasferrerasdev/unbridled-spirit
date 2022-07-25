@@ -1,8 +1,10 @@
+import { v2 as cloudinary } from 'cloudinary';
 import { isValidObjectId } from 'mongoose';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { db } from '../../../database';
 import { Iproduct } from '../../../interfaces';
 import { Product } from '../../../models';
+cloudinary.config(process.env.CLOUDINARY_URL || '');
 
 type Data = { message: string } | Iproduct[] | Iproduct;
 
@@ -59,7 +61,18 @@ const updateProduct = async (
       return res.status(400).json({ message: 'Invalid ID' });
     }
 
-    //TODO: delete images Cloudinary
+    //https://res.cloudinary.com/tomasferreras/image/upload/v1658787573/gpht3pqb0r0zrhrovdqn.webp
+    product.images.forEach(async (image) => {
+      if (!images.includes(image)) {
+        //delete
+        const [cleanID, extension] = image
+          .substring(image.lastIndexOf('/') + 1)
+          .split('.');
+
+        console.log({ cleanID });
+        await cloudinary.uploader.destroy(cleanID);
+      }
+    });
 
     await product.update(req.body);
     await db.disconnect();

@@ -2,12 +2,12 @@ import {
   Box,
   Card,
   CardActionArea,
+  CardMedia,
   Chip,
   Grid,
   Link,
   Typography,
 } from '@mui/material';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import { FC } from 'react';
 import { Iproduct } from '../../interfaces';
@@ -36,13 +36,10 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 />
               )}
 
-              <Image
-                priority
-                src={`/product/${product.images}`}
-                height={360}
-                width={360}
-                layout="responsive"
+              <CardMedia
+                component="img"
                 className="fadeIn"
+                image={product.images[0]}
                 alt={product.title}
               />
             </CardActionArea>
