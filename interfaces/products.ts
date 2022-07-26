@@ -10,7 +10,7 @@ export interface Iproduct {
   tags: string[];
   title: string;
   type: IType;
-  ABV: string;
+  ABV: number;
   createdAt: String;
   updatedAt: String;
 }

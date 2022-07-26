@@ -8,6 +8,6 @@ export interface IcartProduct {
   slug: string;
   title: string;
   type: 'kentucky' | 'tennessee' | 'straight' | 'single-barrel' | 'accessories';
-  ABV: string;
+  ABV: number;
   quantity: number;
 }

@@ -27,7 +27,7 @@ export interface IOrderItem {
   slug: string;
   title: string;
   type: string;
-  ABV: string;
+  ABV: number;
   quantity: number;
 }
 

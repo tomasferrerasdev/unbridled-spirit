@@ -33,7 +33,7 @@ const productSchema = new Schema(
       },
       default: 'tennessee',
     },
-    ABV: { type: String, required: true },
+    ABV: { type: Number, required: true },
   },
   {
     timestamps: true,

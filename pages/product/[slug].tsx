@@ -98,7 +98,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
                 <Typography variant="subtitle2" component="h3">
                   ABV:
                 </Typography>
-                <Typography variant="body2">{product.ABV}</Typography>
+                <Typography variant="body2">{product.ABV}%</Typography>
               </Box>
               <Box display="flex" gap={1} sx={{ my: 1 }}>
                 <Typography variant="subtitle2" component="h3">
