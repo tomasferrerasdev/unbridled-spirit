@@ -6,10 +6,7 @@ import { Order, Product } from '../../../models';
 
 type Data = { message: string } | IOrder;
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'POST':
       return createOrder(req, res);

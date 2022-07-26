@@ -6,10 +6,7 @@ import { User } from '../../../models';
 
 type Data = { message: string } | IUser[];
 
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<Data>
-) {
+export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
   switch (req.method) {
     case 'GET':
       return getUsers(req, res);
