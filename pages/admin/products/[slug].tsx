@@ -50,7 +50,7 @@ interface FormData {
   title: string;
   type: string;
   quantity: number;
-  ABV: string;
+  ABV: number;
 }
 
 interface Props {
