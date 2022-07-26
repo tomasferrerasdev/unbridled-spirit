@@ -1,7 +1,7 @@
 import {
   ClearOutlined,
+  LocalMallOutlined,
   SearchOutlined,
-  ShoppingCartOutlined,
 } from '@mui/icons-material';
 import {
   AppBar,
@@ -155,7 +155,7 @@ export const Navbar: FC = () => {
                       badgeContent={numberOfItems > 9 ? '+9' : numberOfItems}
                       color="primary"
                     >
-                      <ShoppingCartOutlined color="primary" />
+                      <LocalMallOutlined color="primary" />
                     </Badge>
                   </IconButton>
                 </Link>

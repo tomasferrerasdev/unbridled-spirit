@@ -66,6 +66,4 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     console.log(error);
     res.status(400).json({ message: error.message || 'Check server logs' });
   }
-
-  //return res.status(201).json(req.body);
 };

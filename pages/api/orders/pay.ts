@@ -58,13 +58,10 @@ const getPaypalBearerToken = async (): Promise<string | null> => {
 };
 
 const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
-  //TODO: validate user session
-  //TODO: validate MongoID
-
   const paypalBearerToken = await getPaypalBearerToken();
 
   if (!paypalBearerToken) {
-    res.status(400).json({ message: 'SHOTO' });
+    res.status(400).json({ message: 'Paypal token could not be confirmed' });
   }
 
   const { transactionId = '', orderId = '' } = req.body;
