@@ -2,11 +2,11 @@ import {
   Box,
   Button,
   CardActionArea,
+  CardMedia,
   Grid,
   Link,
   Typography,
 } from '@mui/material';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import { FC, useContext, useEffect, useState } from 'react';
 import { CartContext } from '../../context';
@@ -55,14 +55,11 @@ export const CartList: FC<Props> = ({ editable = false, products }) => {
                 >
                   <Link>
                     <CardActionArea>
-                      <Image
-                        src={`/product/${product.image}`}
-                        height={360}
-                        width={360}
-                        layout="responsive"
+                      <CardMedia
+                        src={product.image}
+                        component="img"
                         className="fadeIn"
                         alt={product.title}
-                        priority={true}
                       />
                     </CardActionArea>
                   </Link>

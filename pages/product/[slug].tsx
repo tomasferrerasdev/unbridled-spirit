@@ -58,7 +58,7 @@ const ProductPage: NextPage<Props> = ({ product }) => {
       <Grid container spacing={4} justifyContent="left">
         <Grid item xs={12} md={6}>
           <Image
-            src={`/product/${product.images}`}
+            src={product.images[0]}
             priority={true}
             height={360}
             width={360}
