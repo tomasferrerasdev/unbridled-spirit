@@ -63,7 +63,6 @@ const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     res.status(201).json(newOrder);
   } catch (error: any) {
     await db.disconnect();
-    console.log(error);
     res.status(400).json({ message: error.message || 'Check server logs' });
   }
 };

@@ -35,6 +35,7 @@ const getProducts = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
 
   res.status(200).json(products);
 };
+
 const updateProduct = async (
   req: NextApiRequest,
   res: NextApiResponse<Data>
@@ -61,7 +62,6 @@ const updateProduct = async (
       return res.status(400).json({ message: 'Invalid ID' });
     }
 
-    //https://res.cloudinary.com/tomasferreras/image/upload/v1658787573/gpht3pqb0r0zrhrovdqn.webp
     product.images.forEach(async (image) => {
       if (!images.includes(image)) {
         //delete
@@ -69,16 +69,15 @@ const updateProduct = async (
           .substring(image.lastIndexOf('/') + 1)
           .split('.');
 
-        console.log({ cleanID });
         await cloudinary.uploader.destroy(cleanID);
       }
     });
 
     await product.update(req.body);
     await db.disconnect();
-
     return res.status(200).json(product);
   } catch (error) {
+    console.log(error);
     await db.disconnect();
     return res.status(400).json({ message: 'Check server logs' });
   }
