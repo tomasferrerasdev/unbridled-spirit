@@ -9,7 +9,6 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
-import { PayPalButtons } from '@paypal/react-paypal-js';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -172,7 +171,8 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                       icon={<CreditCardOutlined />}
                     />
                   ) : (
-                    <PayPalButtons
+                    <Typography>Paypal maintenance</Typography>
+                    /*<PayPalButtons
                       createOrder={(data, actions) => {
                         return actions.order.create({
                           purchase_units: [
@@ -189,7 +189,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                           onOrderCompleted(details);
                         });
                       }}
-                    />
+                    />*/
                   )}
                 </Box>
               </Box>
