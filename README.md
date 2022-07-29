@@ -15,7 +15,7 @@ This Guide / Doc is still in progress come again to check updates ✅✅✅
 
 ## TODO features
   - Implement payment methods ✅
-  - Handling and creations of order history ✅
+  - Handling and creations in order history ✅
   - Admin panel ✅
   - Product maintenance
 
