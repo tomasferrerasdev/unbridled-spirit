@@ -15,6 +15,7 @@ export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
       return res.status(400).json({ message: 'Bad request' });
   }
 }
+
 const createOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
   const { orderItems, total } = req.body as IOrder;
 

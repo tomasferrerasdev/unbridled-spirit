@@ -47,7 +47,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     setIsPaying(true);
 
     try {
-      const { data } = await unbridledSpiritAPI.post(`orders/pay`, {
+      const { data } = await unbridledSpiritAPI.post(`/orders/pay`, {
         transactionId: details.id,
         orderId: order._id,
       });
@@ -56,7 +56,6 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     } catch (error) {
       setIsPaying(false);
       console.log(error);
-      alert('chota mira la consola pibe');
     }
   };
 
@@ -171,7 +170,6 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                       icon={<CreditCardOutlined />}
                     />
                   ) : (
-                    <Typography>Paypal maintenance</Typography>
                     /*<PayPalButtons
                       createOrder={(data, actions) => {
                         return actions.order.create({
@@ -189,7 +187,15 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                           onOrderCompleted(details);
                         });
                       }}
-                    />*/
+                    />
+                    */
+                    <Chip
+                      sx={{ my: 2 }}
+                      label="Solving issues with paypal transaction"
+                      color="success"
+                      variant="outlined"
+                      icon={<CreditCardOutlined />}
+                    />
                   )}
                 </Box>
               </Box>

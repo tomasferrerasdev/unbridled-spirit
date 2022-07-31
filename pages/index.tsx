@@ -2,7 +2,7 @@ import { Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import { ShopLayout } from '../components/layouts';
 import { ProductList } from '../components/products/ProductList';
-import { FullScreenLoading, HeroSection } from '../components/ui';
+import { FullScreenLoading } from '../components/ui';
 import { useProducts } from '../hooks';
 
 const HomePage: NextPage = () => {
@@ -15,7 +15,6 @@ const HomePage: NextPage = () => {
         'Order Bourbon Online and have it delivered directly to your door. Buy bourbon online today. Large selection of Single Batch Bourbon, Whiskies and more.'
       }
     >
-      <HeroSection />
       <Typography variant="h1" component="h1">
         Shop
       </Typography>
