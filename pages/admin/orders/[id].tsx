@@ -114,7 +114,7 @@ export const getServerSideProps: GetServerSideProps = async ({
   query,
 }) => {
   const { id = '' } = query;
-  const order = await ordersDB.getOrderByID(id.toString());
+  const order = await ordersDB.getOrderById(id.toString());
 
   if (!order) {
     return {

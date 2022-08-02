@@ -9,6 +9,7 @@ import {
   Grid,
   Typography,
 } from '@mui/material';
+import { PayPalButtons } from '@paypal/react-paypal-js';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
@@ -27,7 +28,8 @@ export type OrderResponseBody = {
     | 'SAVED'
     | 'APPROVED'
     | 'VOIDED'
-    | 'PAYER_ACTION_REQUIRED';
+    | 'PAYER_ACTION_REQUIRED'
+    | any;
 };
 
 interface Props {
@@ -41,7 +43,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
 
   const onOrderCompleted = async (details: OrderResponseBody) => {
     if (details.status !== 'COMPLETED') {
-      return alert('Theres no paypal payment');
+      return alert('No hay pago en Paypal');
     }
 
     setIsPaying(true);
@@ -56,6 +58,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
     } catch (error) {
       setIsPaying(false);
       console.log(error);
+      alert('Error');
     }
   };
 
@@ -170,7 +173,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                       icon={<CreditCardOutlined />}
                     />
                   ) : (
-                    /*<PayPalButtons
+                    <PayPalButtons
                       createOrder={(data, actions) => {
                         return actions.order.create({
                           purchase_units: [
@@ -187,14 +190,6 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                           onOrderCompleted(details);
                         });
                       }}
-                    />
-                    */
-                    <Chip
-                      sx={{ my: 2 }}
-                      label="Solving issues with paypal transaction"
-                      color="success"
-                      variant="outlined"
-                      icon={<CreditCardOutlined />}
                     />
                   )}
                 </Box>
@@ -223,18 +218,8 @@ export const getServerSideProps: GetServerSideProps = async ({
     };
   }
 
-  const order = await ordersDB.getOrderByID(id.toString());
-
+  const order = await ordersDB.getOrderById(id.toString());
   if (!order) {
-    return {
-      redirect: {
-        destination: `/orders/history`,
-        permanent: false,
-      },
-    };
-  }
-
-  if (order.user !== session.user._id) {
     return {
       redirect: {
         destination: `/orders/history`,

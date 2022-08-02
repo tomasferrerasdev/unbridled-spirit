@@ -8,14 +8,16 @@ type Data = {
   message: string;
 };
 
-export default function (req: NextApiRequest, res: NextApiResponse<Data>) {
+export default function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) {
   switch (req.method) {
     case 'POST':
       return payOrder(req, res);
 
     default:
-      res.status(400).json({ message: 'Bad request' });
-      break;
+      return res.status(400).json({ message: 'Bad request en pago' });
   }
 }
 
@@ -27,6 +29,7 @@ const getPaypalBearerToken = async (): Promise<string | null> => {
     `${PAYPAL_CLIENT}:${PAYPAL_SECRET}`,
     'utf-8'
   ).toString('base64');
+
   const body = new URLSearchParams('grant_type=client_credentials');
 
   try {
@@ -35,30 +38,36 @@ const getPaypalBearerToken = async (): Promise<string | null> => {
       body,
       {
         headers: {
-          // prettier-ignore
-          'Authorization': `Basic ${base64Token}`,
+          Authorization: `Basic ${base64Token}`,
           'Content-Type': 'application/x-www-form-urlencoded',
         },
+
+        // Basic QVdGWHFKYWN5Qi01d0w3by1zVC04dDUxMDRyZU5rVHNTMFktY0t3V1N5Z2ZUbFJLU1R4MzdaNnVJbGZiQ1RQSkRtUm1DS3hvcGk1Z0UzdXc6RUM1ZDJkQXBGUjZzRklIeWJSaFBwWkJGNDVRUW5OY1U3aUl2ZXBCSUtVNTZqd2swOGdCZ1hfeXhHQjJTel91aGVhSnJtdmJqc2FLekNOa3k
       }
     );
 
     return data.access_token;
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.log(error.response?.data);
+      console.log('error dentro de axios', error.response?.data);
     } else {
-      console.log(error);
+      console.log('error fuera de axios', error);
     }
 
     return null;
   }
 };
 
-const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+export const payOrder = async (
+  req: NextApiRequest,
+  res: NextApiResponse<Data>
+) => {
   const paypalBearerToken = await getPaypalBearerToken();
 
   if (!paypalBearerToken) {
-    res.status(400).json({ message: 'Paypal token could not be confirmed' });
+    return res
+      .status(400)
+      .json({ message: 'No se pudo confirmar token de paypal' });
   }
 
   const { transactionId = '', orderId = '' } = req.body;
@@ -67,35 +76,38 @@ const payOrder = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     `${process.env.PAYPAL_ORDERS_URL}/${transactionId}`,
     {
       headers: {
-        // prettier-ignore
-        'Authorization': `Bearer ${paypalBearerToken}`,
+        Authorization: `Bearer ${paypalBearerToken}`,
       },
     }
   );
 
   if (data.status !== 'COMPLETED') {
-    return res.status(401).json({ message: 'Unrecognized order' });
+    return res.status(401).json({ message: 'Orden no pagada o reconocida' });
   }
 
   await db.connect();
+
   const dbOrder = await Order.findById(orderId);
 
   if (!dbOrder) {
     await db.disconnect();
-    return res.status(400).json({ message: 'Nonexistent order' });
+    return res
+      .status(400)
+      .json({ message: 'Orden no existe en base de datos' });
   }
 
   if (dbOrder.total !== Number(data.purchase_units[0].amount.value)) {
     await db.disconnect();
     return res
       .status(400)
-      .json({ message: "Paypal amounts does not match with order's one" });
+      .json({ message: 'Datos de de paypal y db no son iguales' });
   }
 
   dbOrder.transactionId = transactionId;
   dbOrder.isPaid = true;
-  dbOrder.save();
+  await dbOrder.save();
+
   await db.disconnect();
 
-  return res.status(200).json({ message: 'Paid order' });
+  return res.status(200).json({ message: 'Orden pagada' });
 };
