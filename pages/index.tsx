@@ -1,8 +1,7 @@
-import { Typography } from '@mui/material';
 import type { NextPage } from 'next';
 import { ShopLayout } from '../components/layouts';
 import { ProductList } from '../components/products/ProductList';
-import { FullScreenLoading } from '../components/ui';
+import { FullScreenLoading, PageTitles } from '../components/ui';
 import { useProducts } from '../hooks';
 
 const HomePage: NextPage = () => {
@@ -15,12 +14,7 @@ const HomePage: NextPage = () => {
         'Order Bourbon Online and have it delivered directly to your door. Buy bourbon online today. Large selection of Single Batch Bourbon, Whiskies and more.'
       }
     >
-      <Typography variant="h1" component="h1">
-        Shop
-      </Typography>
-      <Typography variant="h2" sx={{ mb: 2 }}>
-        All products
-      </Typography>
+      <PageTitles title={'Shop'} subTitle={'All products'} />
       {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
     </ShopLayout>
   );

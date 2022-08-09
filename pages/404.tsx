@@ -12,13 +12,14 @@ const Custom404Page = () => {
         justifyContent="center"
         alignItems="center"
         height="calc(100vh - 200px)"
-        sx={{ flexDirection: { xs: 'column', md: 'row' } }}
       >
-        <Typography variant="h1" component="h1" fontSize={80} fontWeight={150}>
-          404 |{' '}
-        </Typography>
-        <Typography marginLeft={2} fontSize={30}>
-          No whiskey in the jar
+        <Typography
+          fontWeight={500}
+          variant="h1"
+          component="h1"
+          sx={{ fontSize: { xs: 40, md: 80 } }}
+        >
+          404 | Not found
         </Typography>
       </Box>
     </ShopLayout>

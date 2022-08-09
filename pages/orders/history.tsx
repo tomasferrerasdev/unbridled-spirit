@@ -1,9 +1,10 @@
-import { Chip, Grid, Link, Typography } from '@mui/material';
+import { Chip, Grid, Link } from '@mui/material';
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
 import { GetServerSideProps, NextPage } from 'next';
 import { getSession } from 'next-auth/react';
 import NextLink from 'next/link';
 import { ShopLayout } from '../../components/layouts';
+import { PageTitles } from '../../components/ui';
 import { ordersDB } from '../../database';
 import { IOrder } from '../../interfaces/order';
 
@@ -55,12 +56,7 @@ const HistoryPage: NextPage<Props> = ({ orders }) => {
       title={'Unbridled spirit | Order history'}
       pageDescription={'Clients order history'}
     >
-      <Typography variant="h1" component="h1">
-        Order history
-      </Typography>
-      <Typography variant="h2" sx={{ mb: 2 }}>
-        History list
-      </Typography>
+      <PageTitles title={'Order history'} subTitle={'History list'} />
 
       <Grid container className="fadeIn">
         <Grid item xs={12} sx={{ height: '33.125rem', width: '100%' }}>

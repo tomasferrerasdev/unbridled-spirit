@@ -11,6 +11,7 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { CartList, OrderSummary } from '../../components/cart';
 import { ShopLayout } from '../../components/layouts';
+import { PageTitles } from '../../components/ui';
 import { CartContext } from '../../context';
 
 const CartPage = () => {
@@ -31,12 +32,7 @@ const CartPage = () => {
       title={'Unbridled spirit | Cart'}
       pageDescription={'Shopping cart'}
     >
-      <Typography variant="h1" component="h1">
-        Cart
-      </Typography>
-      <Typography variant="h2" sx={{ mb: 2 }}>
-        All products
-      </Typography>
+      <PageTitles title={'Cart'} subTitle={'All products'} />
 
       <Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={8}>

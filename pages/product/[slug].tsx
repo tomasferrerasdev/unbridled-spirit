@@ -1,10 +1,13 @@
-import { Box, Button, Chip, Grid, Typography } from '@mui/material';
+import { Box, Button, Chip, Grid } from '@mui/material';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { ShopLayout } from '../../components/layouts';
-import { ProductSizeSelector } from '../../components/products';
+import {
+  ProductData,
+  ProductImage,
+  ProductSizeSelector,
+} from '../../components/products';
 import { ItemCounter } from '../../components/ui';
 import { CartContext } from '../../context/cart/CartContext';
 import { productsDB } from '../../database';
@@ -50,63 +53,21 @@ const ProductPage: NextPage<Props> = ({ product }) => {
     }
 
     addProductToCart(tempCartProduct);
-    router.push('/cart');
   };
 
   return (
     <ShopLayout title={product.title} pageDescription={product.description}>
       <Grid container spacing={4} justifyContent="left">
         <Grid item xs={12} md={6}>
-          <Image
-            src={product.images[0]}
-            priority={true}
-            height={360}
-            width={360}
-            layout="responsive"
-            className="fadeIn"
-            alt={product.title}
+          <ProductImage
+            productImage={product.images[0]}
+            inStock={product.inStock}
           />
-          {product.inStock === 0 && (
-            <Chip
-              color="primary"
-              label="Out of stock"
-              sx={{
-                position: 'absolute',
-                zIndex: '99',
-                top: '10px',
-                right: '10px',
-              }}
-            />
-          )}
         </Grid>
 
         <Grid item xs={12} md={6}>
           <Box display="flex" flexDirection="column" gap={2}>
-            <Typography variant="h1" component="h1">
-              {product.title}
-            </Typography>
-            <Typography variant="subtitle1" component="h2">
-              ${product.price}
-            </Typography>
-
-            <Box sx={{ mt: 3 }}>
-              <Typography variant="subtitle1" component="h2" fontWeight={700}>
-                Description
-              </Typography>
-              <Typography variant="body2">{product.description}</Typography>
-              <Box display="flex" gap={1} sx={{ my: 1 }}>
-                <Typography variant="subtitle2" component="h3">
-                  ABV:
-                </Typography>
-                <Typography variant="body2">{product.ABV}%</Typography>
-              </Box>
-              <Box display="flex" gap={1} sx={{ my: 1 }}>
-                <Typography variant="subtitle2" component="h3">
-                  Stock:
-                </Typography>
-                <Typography variant="body2">{product.inStock} units</Typography>
-              </Box>
-            </Box>
+            <ProductData product={product} />
 
             <Box display="flex" flexDirection="column" gap={1} sx={{ my: 1 }}>
               <ItemCounter

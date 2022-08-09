@@ -1,4 +1,4 @@
-import { CreditCardOffOutlined, CreditCardOutlined } from '@mui/icons-material';
+import { CreditCardOutlined } from '@mui/icons-material';
 import {
   Box,
   Card,
@@ -15,11 +15,11 @@ import { getSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { unbridledSpiritAPI } from '../../api';
-import { CartList, OrderSummary } from '../../components/cart';
+import { CartList } from '../../components/cart';
 import { ShopLayout } from '../../components/layouts';
+import { AddressCard, OrdersHeader } from '../../components/orders';
 import { ordersDB } from '../../database';
 import { IOrder } from '../../interfaces';
-import { countries } from '../../utils/countries';
 
 export type OrderResponseBody = {
   id: string;
@@ -67,40 +67,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
       title={'Unbridled spirit | order summary'}
       pageDescription={'Order summary'}
     >
-      <Box
-        mb={4}
-        display="flex"
-        justifyContent="space-between"
-        gap={2}
-        sx={{
-          flexDirection: { xs: 'column', sm: 'row' },
-          alignItems: { xs: 'flex-start', sm: 'center' },
-        }}
-      >
-        <Typography
-          variant="h1"
-          component="h1"
-          mb={0.5}
-          sx={{ fontSize: { xs: '1.5rem', md: '1.5rem' } }}
-        >
-          Order No. {order._id}
-        </Typography>
-        {order.isPaid ? (
-          <Chip
-            label="The order is already paid"
-            color="success"
-            variant="outlined"
-            icon={<CreditCardOutlined />}
-          />
-        ) : (
-          <Chip
-            label="Pending payment"
-            color="error"
-            variant="outlined"
-            icon={<CreditCardOffOutlined />}
-          />
-        )}
-      </Box>
+      <OrdersHeader orderId={order._id} isPaid={order.isPaid} />
 
       <Grid container spacing={3} className="fadeIn">
         <Grid item xs={12} md={7}>
@@ -115,40 +82,7 @@ const OrderPage: NextPage<Props> = ({ order }) => {
               </Typography>
               <Divider sx={{ my: 1 }} />
 
-              <Box display="flex" justifyContent="space-between">
-                <Typography variant="subtitle1">Shipping Address</Typography>
-              </Box>
-              <Typography>
-                {shippingAddress.firstName} {shippingAddress.lastName}
-              </Typography>
-              <Typography>
-                {shippingAddress.address}{' '}
-                {shippingAddress.address2
-                  ? `, ${shippingAddress.address2}`
-                  : ``}
-              </Typography>
-              <Typography>
-                {shippingAddress.city}, {shippingAddress.zip}
-              </Typography>
-              <Typography>
-                {
-                  countries.find((c) => c.code === shippingAddress.country)
-                    ?.name
-                }
-              </Typography>
-              <Typography>{shippingAddress.phone}</Typography>
-              <Divider sx={{ my: 1 }} />
-
-              <Typography variant="subtitle1">Products</Typography>
-
-              <OrderSummary
-                orderValues={{
-                  numberOfItems: order.numberOfItems,
-                  subTotal: order.subTotal,
-                  total: order.total,
-                  tax: order.tax,
-                }}
-              />
+              <AddressCard shippingAddress={shippingAddress} order={order} />
 
               <Box sx={{ mt: 2 }} display="flex" flexDirection="column">
                 <Box

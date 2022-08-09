@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 import { useContext, useEffect, useState } from 'react';
 import { CartList, OrderSummary } from '../../components/cart';
 import { ShopLayout } from '../../components/layouts';
+import { PageTitles } from '../../components/ui';
 import { CartContext } from '../../context';
 import { countries } from '../../utils';
 
@@ -58,12 +59,8 @@ const SummaryPage = () => {
       title={'Unbridled spirit | Summary'}
       pageDescription={'Order summary'}
     >
-      <Typography variant="h1" component="h1">
-        Order summary
-      </Typography>
-      <Typography variant="h2" sx={{ mb: 2 }}>
-        Your order
-      </Typography>
+      <PageTitles title={'Order summary'} subTitle={'Your order'} />
+
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6} md={8}>
           <CartList />
