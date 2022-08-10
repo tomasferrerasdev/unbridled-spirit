@@ -16,7 +16,6 @@ export const Navbar: FC = () => {
           <Toolbar disableGutters={true}>
             <Box display="flex" gap={2}>
               <NavLogo />
-
               <NavList />
             </Box>
 

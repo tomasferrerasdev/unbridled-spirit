@@ -1,11 +1,16 @@
 import { Box } from '@mui/material';
-import { Drink } from './Drink';
 export const HeroSection = () => {
   return (
     <>
-      <Box sx={{ position: 'relative' }}>
-        <Drink />
-      </Box>
+      <Box
+        display="flex"
+        justifyContent="space-between"
+        alignItems="center"
+        height="calc(100vh - 200px)"
+        position="relative"
+        mb={15}
+        mt={15}
+      ></Box>
     </>
   );
 };
