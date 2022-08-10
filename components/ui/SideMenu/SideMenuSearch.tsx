@@ -6,7 +6,7 @@ import { UiContext } from '../../../context';
 
 export const SideMenuSearch = () => {
   const router = useRouter();
-  const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
+  const { toggleSideMenu } = useContext(UiContext);
   const [searchTerm, setSearchTerm] = useState('');
 
   const onSearchTerm = () => {

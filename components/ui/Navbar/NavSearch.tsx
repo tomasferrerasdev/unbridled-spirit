@@ -25,7 +25,7 @@ export const NavSearch = () => {
       {/*DESKTOP*/}
       {isSearchVisible ? (
         <Input
-          sx={{ display: { xs: 'none', md: 'flex' } }}
+          sx={{ display: { xs: 'none', md: 'flex', width: '10rem' } }}
           className="fadeIn"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}

@@ -1,6 +1,5 @@
 import { Box, Divider, Drawer, List } from '@mui/material';
-import { useRouter } from 'next/router';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import {
   SideMenuAdmin,
   SideMenuCategories,
@@ -10,20 +9,7 @@ import {
 import { UiContext } from '../../../context';
 
 export const SideMenu = () => {
-  const router = useRouter();
   const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
-  const [searchTerm, setSearchTerm] = useState('');
-
-  const onSearchTerm = () => {
-    if (searchTerm.trim().length === 0) return;
-    navigateTo(`/search/${searchTerm}`);
-  };
-
-  const navigateTo = (url: string) => {
-    toggleSideMenu();
-    router.push(url);
-  };
-
   return (
     <Drawer
       open={isMenuOpen}
@@ -35,11 +21,8 @@ export const SideMenu = () => {
         <List>
           <SideMenuSearch />
           <SideMenuLogged />
-
           <SideMenuCategories />
-
           <Divider />
-
           <SideMenuAdmin />
         </List>
       </Box>

@@ -13,7 +13,7 @@ const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
 
 export const SideMenuCategories = () => {
   const router = useRouter();
-  const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
+  const { toggleSideMenu } = useContext(UiContext);
   const navigateTo = (url: string) => {
     toggleSideMenu();
     router.push(url);

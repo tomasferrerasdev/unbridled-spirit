@@ -16,8 +16,8 @@ import { AuthContext, UiContext } from '../../../context';
 
 export const SideMenuAdmin = () => {
   const router = useRouter();
-  const { isMenuOpen, toggleSideMenu } = useContext(UiContext);
-  const { user, isLoggedIn, logoutUser } = useContext(AuthContext);
+  const { toggleSideMenu } = useContext(UiContext);
+  const { user } = useContext(AuthContext);
   const navigateTo = (url: string) => {
     toggleSideMenu();
     router.push(url);
