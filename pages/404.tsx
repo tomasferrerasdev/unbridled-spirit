@@ -11,18 +11,20 @@ const Custom404Page = () => {
       <>
         <Box
           display="flex"
-          justifyContent="center"
+          justifyContent="space-between"
           alignItems="center"
           flexDirection="column"
           height="calc(100vh - 200px)"
           position="relative"
+          mt={15}
           gap={2}
         >
           <Image
-            src="/images/turkey.png"
-            width={600}
-            height={500}
+            src="/images/Turkey_404.png"
+            width={510}
+            height={580}
             objectFit="cover"
+            priority
           />
           <Typography
             fontWeight={500}
