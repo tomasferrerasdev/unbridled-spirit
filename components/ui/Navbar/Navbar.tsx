@@ -1,4 +1,5 @@
-import { AppBar, Box, Button, Toolbar } from '@mui/material';
+import { DehazeOutlined } from '@mui/icons-material';
+import { AppBar, Box, IconButton, Toolbar } from '@mui/material';
 import { Container } from '@mui/system';
 import { FC, useContext } from 'react';
 import { NavList, NavLogo, NavSearch } from '.';
@@ -24,9 +25,9 @@ export const Navbar: FC = () => {
             <Box display="flex" gap={1}>
               <NavSearch />
               <NavBadge numberOfItems={numberOfItems} />
-              <Button onClick={toggleSideMenu} color="info">
-                Menu
-              </Button>
+              <IconButton onClick={toggleSideMenu}>
+                <DehazeOutlined color="primary" />
+              </IconButton>
             </Box>
           </Toolbar>
         </Container>

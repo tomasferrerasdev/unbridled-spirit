@@ -6,16 +6,16 @@ export const NavLogo = () => {
   return (
     <NextLink href="/" passHref>
       <Link display="flex" alignItems="center">
-        <Box alignItems="center" sx={{ display: { xs: 'none', sm: 'flex' } }}>
-          <Image priority src="/icons.svg" width={20} height={20} alt="logo" />
-        </Box>
-        <Typography
-          variant="body1"
-          color="primary"
-          sx={{ fontSize: { sm: 20 }, padding: '0 5px' }}
+        <Box
+          alignItems="center"
+          sx={{ display: { xs: 'flex', sm: 'flex' } }}
+          gap={1}
         >
-          Unbridled spirit
-        </Typography>
+          <Image src="/images/logo.png" width={30} height={20} />
+          <Typography fontWeight={700} fontSize={20}>
+            Unbridled Spirit
+          </Typography>
+        </Box>
       </Link>
     </NextLink>
   );

@@ -1,11 +1,5 @@
 import { ClearOutlined, SearchOutlined } from '@mui/icons-material';
-import {
-  Box,
-  IconButton,
-  Input,
-  InputAdornment,
-  Typography,
-} from '@mui/material';
+import { Box, IconButton, Input, InputAdornment } from '@mui/material';
 import { useRouter } from 'next/router';
 import { useContext, useState } from 'react';
 import { UiContext } from '../../../context';
@@ -47,9 +41,6 @@ export const NavSearch = () => {
           className="fadeIn"
         >
           <Box display="flex" gap={1}>
-            <Typography variant="body1" color="primary">
-              search
-            </Typography>
             <SearchOutlined color="primary" />
           </Box>
         </IconButton>
@@ -61,9 +52,6 @@ export const NavSearch = () => {
         onClick={toggleSideMenu}
       >
         <Box display="flex" gap={1}>
-          <Typography variant="body1" color="primary">
-            search
-          </Typography>
           <SearchOutlined color="primary" />
         </Box>
       </IconButton>

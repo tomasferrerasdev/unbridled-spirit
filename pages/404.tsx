@@ -1,5 +1,6 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Button, Link, Typography } from '@mui/material';
 import Image from 'next/image';
+import NextLink from 'next/link';
 import { ShopLayout } from '../components/layouts';
 
 const Custom404Page = () => {
@@ -10,30 +11,40 @@ const Custom404Page = () => {
     >
       <>
         <Box
+          width="100%"
+          height="calc(100vh - 50px)"
           display="flex"
-          justifyContent="space-between"
-          alignItems="center"
           flexDirection="column"
-          height="calc(100vh - 200px)"
-          position="relative"
-          mt={15}
-          gap={2}
         >
-          <Image
-            src="/images/Turkey_404.png"
-            width={510}
-            height={580}
-            objectFit="cover"
-            priority
-          />
-          <Typography
-            fontWeight={500}
-            variant="h1"
-            component="h1"
-            sx={{ fontSize: { xs: 35, md: 60 } }}
+          <Box height="100%" flex={1} position="relative">
+            <Image
+              src="/images/Turkey_404.png"
+              layout="fill"
+              objectFit="contain"
+              priority
+            />
+          </Box>
+          <Box
+            height="100%"
+            flex={0.4}
+            display="flex"
+            flexDirection="column"
+            justifyContent="start"
+            alignItems="center"
+            gap={1}
           >
-            404 | Not found
-          </Typography>
+            <Typography sx={{ fontSize: { xs: 40, sm: 50 } }}>
+              404 | not found
+            </Typography>
+
+            <NextLink href="/" passHref>
+              <Link>
+                <Button sx={{ width: '10rem' }} size="medium">
+                  Shop now
+                </Button>
+              </Link>
+            </NextLink>
+          </Box>
         </Box>
       </>
     </ShopLayout>
