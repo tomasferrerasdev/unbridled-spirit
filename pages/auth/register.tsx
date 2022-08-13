@@ -12,6 +12,7 @@ import { GetServerSideProps } from 'next';
 import { getSession, signIn } from 'next-auth/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
+import { useSnackbar, VariantType } from 'notistack';
 import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { AuthLayout } from '../../components/layouts';
@@ -27,6 +28,13 @@ type FormData = {
 const RegisterPage = () => {
   const router = useRouter();
   const { registerUser } = useContext(AuthContext);
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClickVariant = (variant: VariantType) => {
+    enqueueSnackbar('Account created successfully', {
+      variant,
+      anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
+    });
+  };
 
   const {
     register,
@@ -51,6 +59,7 @@ const RegisterPage = () => {
     }
 
     await signIn('credentials', { email, password });
+    handleClickVariant('success');
   };
 
   return (
