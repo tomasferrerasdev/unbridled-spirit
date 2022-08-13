@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
 import { SessionProvider } from 'next-auth/react';
 import type { AppProps } from 'next/app';
+import { SnackbarProvider } from 'notistack';
 import { SWRConfig } from 'swr';
 import { AuthProvider, CartProvider, UiProvider } from '../context';
 import '../styles/globals.css';
@@ -24,7 +25,9 @@ function MyApp({ Component, pageProps }: AppProps) {
               <UiProvider>
                 <ThemeProvider theme={lightTheme}>
                   <CssBaseline />
-                  <Component {...pageProps} />
+                  <SnackbarProvider maxSnack={3}>
+                    <Component {...pageProps} />
+                  </SnackbarProvider>
                 </ThemeProvider>
               </UiProvider>
             </CartProvider>

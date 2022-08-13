@@ -1,6 +1,7 @@
 import { Box, Button, Chip, Grid } from '@mui/material';
 import { GetStaticPaths, GetStaticProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { useSnackbar, VariantType } from 'notistack';
 import { useContext, useState } from 'react';
 import { ShopLayout } from '../../components/layouts';
 import {
@@ -21,6 +22,7 @@ interface Props {
 const ProductPage: NextPage<Props> = ({ product }) => {
   const router = useRouter();
   const { addProductToCart } = useContext(CartContext);
+  const { enqueueSnackbar } = useSnackbar();
 
   const [tempCartProduct, settempCartProduct] = useState<IcartProduct>({
     _id: product._id as string,
@@ -46,13 +48,20 @@ const ProductPage: NextPage<Props> = ({ product }) => {
       quantity,
     }));
   };
-
   const onAddProduct = () => {
     if (!tempCartProduct.size) {
       return;
     }
 
     addProductToCart(tempCartProduct);
+    handleClickVariant('success');
+  };
+
+  const handleClickVariant = (variant: VariantType) => {
+    enqueueSnackbar('Added to cart successfully', {
+      variant,
+      anchorOrigin: { vertical: 'bottom', horizontal: 'right' },
+    });
   };
 
   return (
