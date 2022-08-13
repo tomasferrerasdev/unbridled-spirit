@@ -37,6 +37,7 @@ export const HeroData = () => {
               src="/images/us_flag.webp"
               layout="fill"
               alt="us flag image"
+              priority
             />
           </Box>
         </Box>
