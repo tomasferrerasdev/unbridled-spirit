@@ -1,7 +1,11 @@
 import { Box, Button, Typography } from '@mui/material';
 import Image from 'next/image';
+import { useContext } from 'react';
+import { AuthContext } from '../../../context';
 
 export const HeroData = () => {
+  const { isLoggedIn, user } = useContext(AuthContext);
+
   return (
     <>
       <Box
@@ -12,13 +16,20 @@ export const HeroData = () => {
         height="100%"
         flex={1}
       >
-        <Typography
-          sx={{ fontSize: { xs: 50, sm: 70, md: 90 } }}
-          fontWeight={700}
-          lineHeight={1.2}
-        >
-          Unbridled
-        </Typography>
+        <Box>
+          {isLoggedIn && (
+            <Typography sx={{ color: '#3b38db' }}>
+              Hello {user!.name.split(' ')[0]} have a nice day!
+            </Typography>
+          )}
+          <Typography
+            sx={{ fontSize: { xs: 50, sm: 70, md: 90 } }}
+            fontWeight={700}
+            lineHeight={1.2}
+          >
+            Unbridled
+          </Typography>
+        </Box>
         <Box display="flex" gap={2} alignItems="center" mb={5}>
           <Typography
             fontWeight={700}

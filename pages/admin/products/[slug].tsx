@@ -383,15 +383,6 @@ const ProductAdminPage: FC<Props> = ({ product }) => {
                 />
               </Button>
 
-              {/*
-              <Chip
-                label="Need at least one image"
-                color="error"
-                variant="outlined"
-              />
-              
-              */}
-
               <Grid container spacing={2}>
                 {getValues('images').map((img) => (
                   <Grid item xs={4} sm={3} key={img}>
