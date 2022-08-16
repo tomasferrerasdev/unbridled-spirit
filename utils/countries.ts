@@ -15,16 +15,4 @@ export const countries = [
     name: 'United States',
     code: 'USA',
   },
-  {
-    name: 'Australia',
-    code: 'AUS',
-  },
-  {
-    name: 'Canada',
-    code: 'CAN',
-  },
-  {
-    name: 'Norway',
-    code: 'NOR',
-  },
 ];

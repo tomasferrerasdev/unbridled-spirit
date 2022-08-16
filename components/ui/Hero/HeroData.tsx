@@ -40,8 +40,8 @@ export const HeroData = () => {
           </Typography>
           <Box
             sx={{ display: { xs: 'none', sm: 'flex' } }}
-            height={70}
-            width={130}
+            height={60}
+            width={110}
             position="relative"
           >
             <Image

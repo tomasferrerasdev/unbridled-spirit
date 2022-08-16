@@ -1,8 +1,8 @@
 import { Box } from '@mui/material';
 import Head from 'next/head';
+import Image from 'next/image';
 import { FC } from 'react';
 import { Drink } from '../ui';
-
 interface Props {
   title: string;
   children: React.ReactNode;
@@ -15,7 +15,15 @@ export const AuthLayout: FC<Props> = ({ title, children }) => {
         <title>{title}</title>
       </Head>
 
-      <main>
+      <main style={{ position: 'relative' }}>
+        <Box position="absolute" bottom={-50} right={0}>
+          <Image
+            src="/images/barn.png"
+            width={1050}
+            height={800}
+            alt="barn image"
+          />
+        </Box>
         <Drink />
         <Box
           display="flex"
