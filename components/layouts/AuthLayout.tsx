@@ -18,7 +18,7 @@ export const AuthLayout: FC<Props> = ({ title, children }) => {
       <main style={{ position: 'relative' }}>
         <Box position="absolute" bottom={-50} right={0}>
           <Image
-            src="/images/barn.webp"
+            src="/images/LoginBarn.webp"
             width={1050}
             height={800}
             alt="barn image"
