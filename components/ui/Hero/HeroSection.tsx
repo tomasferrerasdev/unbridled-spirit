@@ -20,7 +20,7 @@ export const HeroSection = () => {
           sx={{ display: { xs: 'none', md: 'block' } }}
         >
           <Image
-            src="/images/Turkey_hero.png"
+            src="/images/Turkey_hero.webp"
             layout="fill"
             objectFit="contain"
             priority

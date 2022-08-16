@@ -18,10 +18,11 @@ export const AuthLayout: FC<Props> = ({ title, children }) => {
       <main style={{ position: 'relative' }}>
         <Box position="absolute" bottom={-50} right={0}>
           <Image
-            src="/images/barn.png"
+            src="/images/barn.webp"
             width={1050}
             height={800}
             alt="barn image"
+            priority
           />
         </Box>
         <Drink />

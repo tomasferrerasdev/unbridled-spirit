@@ -18,7 +18,7 @@ const Custom404Page = () => {
         >
           <Box height="100%" flex={1} position="relative">
             <Image
-              src="/images/Turkey_404.png"
+              src="/images/Turkey_404.webp"
               layout="fill"
               objectFit="contain"
               priority
