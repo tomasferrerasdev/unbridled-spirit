@@ -44,7 +44,6 @@ export const ProductCard: FC<Props> = ({ product, index }) => {
                 layout="responsive"
                 objectFit="cover"
                 alt={product.slug}
-                priority={index < 6}
               />
             </CardActionArea>
           </Link>
