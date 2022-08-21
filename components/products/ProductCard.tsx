@@ -14,9 +14,10 @@ import { Iproduct } from '../../interfaces';
 
 interface Props {
   product: Iproduct;
+  index: number;
 }
 
-export const ProductCard: FC<Props> = ({ product }) => {
+export const ProductCard: FC<Props> = ({ product, index }) => {
   return (
     <Grid item xs={6} sm={4} md={3}>
       <Card>
@@ -41,6 +42,9 @@ export const ProductCard: FC<Props> = ({ product }) => {
                 height={360}
                 width={360}
                 layout="responsive"
+                objectFit="cover"
+                alt={product.slug}
+                priority={index < 6}
               />
             </CardActionArea>
           </Link>

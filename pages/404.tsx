@@ -22,6 +22,7 @@ const Custom404Page = () => {
               layout="fill"
               objectFit="contain"
               priority
+              alt="turkey illustration"
             />
           </Box>
           <Box

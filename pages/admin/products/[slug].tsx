@@ -21,7 +21,7 @@ import {
 } from '@mui/material';
 import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
-import { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
+import { ChangeEvent, FC, useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
@@ -59,7 +59,6 @@ interface Props {
 
 const ProductAdminPage: FC<Props> = ({ product }) => {
   const router = useRouter();
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [newTagValue, setNewTagValue] = useState('');
   const [isSaving, setIsSaving] = useState(false);
