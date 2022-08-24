@@ -63,6 +63,10 @@ You can use your own Paypal account under your own risk but as an advice make su
 
 <img src="https://user-images.githubusercontent.com/107090584/184007295-0b0124ce-544f-43c1-9815-e8d497b20a42.png"  width=300 />
 
+## TODO
+- Improve code readability
+- Segment pages in smaller components
+
 ## App features
 
 - Implement payment methods ✅
