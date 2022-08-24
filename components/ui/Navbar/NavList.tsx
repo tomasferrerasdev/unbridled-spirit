@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 
-const items = ['kentucky', 'tennessee', 'straight', 'single-barrel'];
+const items = ['all', 'kentucky', 'tennessee', 'straight', 'single-barrel'];
 
 export const NavList = () => {
   const { asPath } = useRouter();

@@ -1,9 +1,9 @@
-import { AppBar, Box, Button, Link, Toolbar, Typography } from '@mui/material';
+import { AppBar, Box, Button, Link, Toolbar } from '@mui/material';
 import { Container } from '@mui/system';
-import Image from 'next/image';
 import NextLink from 'next/link';
 import { FC, useContext } from 'react';
 import { UiContext } from '../../context';
+import { NavLogo } from '../ui/Navbar';
 
 export const AdminNavbar: FC = () => {
   const { toggleSideMenu } = useContext(UiContext);
@@ -20,25 +20,7 @@ export const AdminNavbar: FC = () => {
           >
             <NextLink href="/" passHref>
               <Link display="flex" alignItems="center">
-                <Box
-                  alignItems="center"
-                  sx={{ display: { xs: 'none', sm: 'flex' } }}
-                >
-                  <Image
-                    priority
-                    src="/icons.svg"
-                    width={20}
-                    height={20}
-                    alt="logo"
-                  />
-                </Box>
-                <Typography
-                  variant="body1"
-                  color="primary"
-                  sx={{ fontSize: { sm: 20 }, padding: '0 5px' }}
-                >
-                  Unbridled spirit
-                </Typography>
+                <NavLogo />
               </Link>
             </NextLink>
 

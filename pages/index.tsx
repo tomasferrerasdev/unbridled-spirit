@@ -1,12 +1,8 @@
 import type { NextPage } from 'next';
 import { ShopLayout } from '../components/layouts';
-import { ProductList } from '../components/products/ProductList';
-import { FullScreenLoading, HeroSection, PageTitles } from '../components/ui';
-import { useProducts } from '../hooks';
+import { HeroSection } from '../components/ui';
 
 const HomePage: NextPage = () => {
-  const { products, isLoading } = useProducts('/products');
-
   return (
     <ShopLayout
       title={'Unbridled spirit | Shop'}
@@ -15,8 +11,6 @@ const HomePage: NextPage = () => {
       }
     >
       <HeroSection />
-      <PageTitles title={'Shop'} subTitle={'All products'} />
-      {isLoading ? <FullScreenLoading /> : <ProductList products={products} />}
     </ShopLayout>
   );
 };

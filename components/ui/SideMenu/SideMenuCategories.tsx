@@ -9,7 +9,13 @@ import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { UiContext } from '../../../context';
 
-const ValidTypes = ['Kentucky', 'Tennessee', 'Straight', 'Single-Barrel'];
+const ValidTypes = [
+  'All',
+  'Kentucky',
+  'Tennessee',
+  'Straight',
+  'Single-Barrel',
+];
 
 export const SideMenuCategories = () => {
   const router = useRouter();

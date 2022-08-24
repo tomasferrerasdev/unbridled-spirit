@@ -1,10 +1,13 @@
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, Link, Typography } from '@mui/material';
 import Image from 'next/image';
+import NextLink from 'next/link';
+import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { AuthContext } from '../../../context';
 
 export const HeroData = () => {
   const { isLoggedIn, user } = useContext(AuthContext);
+  const { asPath } = useRouter();
 
   return (
     <>
@@ -62,9 +65,13 @@ export const HeroData = () => {
           <Typography variant="body1" sx={{ fontSize: '1.2rem' }}>
             Tennessee whiskies and more.
           </Typography>
-          <Button sx={{ width: '10rem', my: 4 }} size="large">
-            Shop now
-          </Button>
+          <NextLink href={`/category/all`} passHref>
+            <Link>
+              <Button sx={{ width: '10rem', my: 4 }} size="large">
+                Shop now
+              </Button>
+            </Link>
+          </NextLink>
         </Box>
       </Box>
     </>
