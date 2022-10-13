@@ -66,6 +66,9 @@ You can use your own Paypal account under your own risk but as an advice make su
 ## TODO
 - Improve code readability
 - Segment pages in smaller components
+- Goal-gradient in shopping path
+- Peak–end rule plus reward
+- Zeigarnik effect on checkout proccess
 
 ## App features
 
