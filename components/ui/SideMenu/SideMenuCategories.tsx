@@ -15,6 +15,7 @@ const ValidTypes = [
   'Tennessee',
   'Straight',
   'Single-Barrel',
+  'Unchained-Devs',
 ];
 
 export const SideMenuCategories = () => {

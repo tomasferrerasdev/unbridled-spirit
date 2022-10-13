@@ -19,7 +19,6 @@ export const getProductBySlug = async (
 interface ProductSlug {
   slug: string;
 }
-
 export const getAllProductSlugs = async (): Promise<ProductSlug[]> => {
   await db.connect();
   const slugs = await Product.find().select('slug -_id').lean();
