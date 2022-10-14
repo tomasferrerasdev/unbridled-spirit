@@ -107,24 +107,33 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                       icon={<CreditCardOutlined />}
                     />
                   ) : (
-                    <PayPalButtons
-                      createOrder={(data, actions) => {
-                        return actions.order.create({
-                          purchase_units: [
-                            {
-                              amount: {
-                                value: `${order.total}`,
+                    <>
+                      <PayPalButtons
+                        createOrder={(data, actions) => {
+                          return actions.order.create({
+                            purchase_units: [
+                              {
+                                amount: {
+                                  value: `${order.total}`,
+                                },
                               },
-                            },
-                          ],
-                        });
-                      }}
-                      onApprove={(data, actions) => {
-                        return actions.order!.capture().then((details) => {
-                          onOrderCompleted(details);
-                        });
-                      }}
-                    />
+                            ],
+                          });
+                        }}
+                        onApprove={(data, actions) => {
+                          return actions.order!.capture().then((details) => {
+                            onOrderCompleted(details);
+                          });
+                        }}
+                      />
+                      <Typography display="flex" gap={1}>
+                        <Box fontWeight={800}>Paypal demo user:</Box>{' '}
+                        demouser@google.com
+                      </Typography>
+                      <Typography display="flex" gap={1}>
+                        <Box fontWeight={800}>Password:</Box> demouser
+                      </Typography>
+                    </>
                   )}
                 </Box>
               </Box>

@@ -41,7 +41,7 @@ export const NavSearch = () => {
           className="fadeIn"
         >
           <Box display="flex" gap={1}>
-            <SearchOutlined color="primary" />
+            <SearchOutlined color="primary" aria-label="search icon" />
           </Box>
         </IconButton>
       )}

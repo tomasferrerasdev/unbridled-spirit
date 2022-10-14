@@ -26,7 +26,7 @@ export const Navbar: FC = () => {
               <NavSearch />
               <NavBadge numberOfItems={numberOfItems} />
               <IconButton onClick={toggleSideMenu}>
-                <DehazeOutlined color="primary" />
+                <DehazeOutlined color="primary" aria-label="menu icon" />
               </IconButton>
             </Box>
           </Toolbar>
