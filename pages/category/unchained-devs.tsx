@@ -32,7 +32,7 @@ const UnchainedDevs: NextPage = () => {
         </Typography>
         <Link
           target="_blank"
-          href="https://tomasferrerasdev.github.io/unchained-devs/"
+          href="https://unchained-devs.vercel.app/"
         >
           <Typography
             sx={{
