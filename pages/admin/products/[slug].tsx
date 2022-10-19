@@ -26,7 +26,7 @@ import { Controller, useForm } from 'react-hook-form';
 import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
 import { productsDB } from '../../../database';
-import { Iproduct } from '../../../interfaces';
+import { FormData, Iproduct } from '../../../interfaces';
 import { Product } from '../../../models';
 
 const validTypes = [
@@ -37,21 +37,6 @@ const validTypes = [
   'accessories',
 ];
 const validSizes = ['1L', '750ml', '375ml', '200ml'];
-
-interface FormData {
-  _id?: String;
-  description: string;
-  images: string[];
-  inStock: number;
-  price: number;
-  sizes: string[];
-  slug: string;
-  tags: string[];
-  title: string;
-  type: string;
-  quantity: number;
-  ABV: number;
-}
 
 interface Props {
   product: Iproduct;
@@ -425,7 +410,9 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   if (slug === 'new') {
     const tempProduct = JSON.parse(JSON.stringify(new Product()));
     delete tempProduct._id;
-    tempProduct.images = ['Tasting-Book-.webp'];
+    tempProduct.images = [
+      'https://res.cloudinary.com/tomasferreras/image/upload/v1658800051/v2a1javmf1ri478nq9us.jpg',
+    ];
     product = tempProduct;
   } else {
     product = await productsDB.getProductBySlug(slug.toString());
