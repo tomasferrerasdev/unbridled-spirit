@@ -1,7 +1,7 @@
 services:
-  umbridled:
+  unbridled:
     image: mongo:5.0.0
-    container_name: umbridled
+    container_name: unbridled
     ports:
       - 27017:27017
     volumes:
