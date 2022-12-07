@@ -26,7 +26,8 @@ import { Controller, useForm } from 'react-hook-form';
 import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
 import { productsDB } from '../../../database';
-import { FormData, Iproduct } from '../../../interfaces';
+import { Iproduct } from '../../../interfaces';
+import FormData from '../../../interfaces/formData';
 import { Product } from '../../../models';
 
 const validTypes = [

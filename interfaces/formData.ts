@@ -1,4 +1,4 @@
-export interface FormData {
+export default interface FormData {
   _id?: String;
   description: string;
   images: string[];
