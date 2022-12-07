@@ -35,7 +35,7 @@ const Custom404Page = () => {
             gap={1}
           >
             <Typography sx={{ fontSize: { xs: 40, sm: 50 } }}>
-              404 | not found
+              404 - not found
             </Typography>
 
             <NextLink href="/" passHref>
