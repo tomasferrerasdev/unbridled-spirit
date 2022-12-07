@@ -27,8 +27,22 @@ import { unbridledSpiritAPI } from '../../../api';
 import { AdminLayout } from '../../../components/layouts';
 import { productsDB } from '../../../database';
 import { Iproduct } from '../../../interfaces';
-import FormData from '../../../interfaces/formData';
 import { Product } from '../../../models';
+
+export interface FormData {
+  _id?: String;
+  description: string;
+  images: string[];
+  inStock: number;
+  price: number;
+  sizes: string[];
+  slug: string;
+  tags: string[];
+  title: string;
+  type: string;
+  quantity: number;
+  ABV: number;
+}
 
 const validTypes = [
   'kentucky',
