@@ -127,11 +127,16 @@ const OrderPage: NextPage<Props> = ({ order }) => {
                         }}
                       />
                       <Typography display="flex" gap={1}>
-                        <Box fontWeight={800}>Paypal demo user:</Box>{' '}
+                        <Box fontWeight={800} color="#2da84e">
+                          Paypal demo user:
+                        </Box>{' '}
                         demouser@google.com
                       </Typography>
                       <Typography display="flex" gap={1}>
-                        <Box fontWeight={800}>Password:</Box> demouser
+                        <Box fontWeight={800} color="#2da84e">
+                          Password:
+                        </Box>{' '}
+                        demouser
                       </Typography>
                     </>
                   )}
