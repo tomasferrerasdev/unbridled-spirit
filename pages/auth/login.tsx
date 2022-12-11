@@ -27,11 +27,6 @@ const LoginPage = () => {
     password: string;
   };
 
-  const demoUser = {
-    email: 'demouser@google.com',
-    password: '123456',
-  };
-
   const {
     register,
     handleSubmit,
