@@ -20,7 +20,8 @@ export const Drink = () => {
           color="#ffffff"
           lineHeight="110%"
         >
-          ¡Let&apos;s drink responsibly!
+          ¡Let&apos;s drink responsibly! WELCOME, FRIEND (OF LEGAL DRINKING
+          AGE).
         </Typography>
       </Box>
     </Box>
